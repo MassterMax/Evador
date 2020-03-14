@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     public bool gameHasStarted = false;
     bool gameHasEnded = false;
 
+    public int maxLevel = 1;
+    public int currentLevel = 1;
+
     public void GameOver()
     {
         if (!gameHasEnded)
@@ -19,6 +22,13 @@ public class GameManager : MonoBehaviour
 
             Invoke("ShowGameOverScreen", onEndDelay);
         }
+    }
+
+    public void LevelComplete()
+    {
+        SceneManager.LoadScene(0);
+        if (currentLevel == maxLevel && maxLevel < 10)
+            maxLevel++;
     }
 
     void ShowGameOverScreen()
