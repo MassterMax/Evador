@@ -5,6 +5,7 @@ ScriptsOnlyBuild:
     - CopyScript
     - DummyPlayerContoller
     - GameManager
+    - GameMenuController
     - MenuContoller
     - MovingWall
     - PlayerController
@@ -69,6 +70,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10488}
     - Class: 114
+      Script: {instanceID: 10652}
+    - Class: 114
       Script: {instanceID: 11004}
     - Class: 114
       Script: {instanceID: 11132}
@@ -78,6 +81,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 11226}
     - Class: 114
       Script: {instanceID: 11506}
+    - Class: 114
+      Script: {instanceID: 15228}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -128,6 +133,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10488}
     - Class: 114
+      Script: {instanceID: 10652}
+    - Class: 114
       Script: {instanceID: 11004}
     - Class: 114
       Script: {instanceID: 11132}
@@ -137,6 +144,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 11226}
     - Class: 114
       Script: {instanceID: 11506}
+    - Class: 114
+      Script: {instanceID: 15228}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -671,6 +680,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: b48bed464a5c7cc19249f9e49ad6a1c4
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameMenuController
   platform: 13
   scenePathNames:
   - Assets/Scenes/MainMenu.unity

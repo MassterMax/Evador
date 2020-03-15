@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
         else
             Destroy(gameObject);
 
+        gameHasEnded = false;
         width = Camera.main.pixelWidth;
         height = Camera.main.pixelHeight;
         deltaPos = Camera.main.ScreenToWorldPoint(new Vector2(width, height));

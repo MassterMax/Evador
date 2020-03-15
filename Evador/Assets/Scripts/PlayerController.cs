@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
             if (Input.touchCount > 1)
                 direction += OnTouch(Input.GetTouch(1));
         }
-        else if (Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Mouse1)) // Управление мышкой.
+        else if ((Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Mouse1)) && Input.mousePosition.y < 1800) // Управление мышкой.
         {
             if (Input.GetKey(KeyCode.Mouse0))
                 direction += Vector2.left;
@@ -42,11 +42,15 @@ public class PlayerController : MonoBehaviour
         }
 
         direction = direction.normalized;
+
         transform.Translate((Vector2.up * verticalSpeed + direction * horizontalSpeed) * Time.deltaTime);
     }
 
     Vector2 OnTouch(Touch t)
     {
+        if (TouchInDeadArea(t))
+            return new Vector2();
+
         Vector2 tPos = Camera.main.ScreenToWorldPoint(t.position);
         if (tPos.x < 0)
             return Vector2.left;
@@ -59,5 +63,10 @@ public class PlayerController : MonoBehaviour
         leftCopy.transform.position = (Vector2)transform.position - 2 * deltaX;
         middleCopy.transform.position = transform.position;
         rightCopy.transform.position = (Vector2)transform.position + 2 * deltaX;
+    }
+
+    bool TouchInDeadArea(Touch t)
+    {
+        return t.position.y >= 1800;
     }
 }
