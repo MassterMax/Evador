@@ -1,10 +1,19 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections;
+using System;
 
 public class MenuContoller : MonoBehaviour
 {
     [SerializeField] Text levelText;
+    [SerializeField] Text settingsText;
+
+    [SerializeField] GameObject panel;
+    [SerializeField] GameObject backButton;
+    [SerializeField] GameObject settingsButton;
+    [SerializeField] GameObject settingsCanvas;
+    Image panelBG, backImage;
 
     string[] levels = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X" };
 
@@ -33,9 +42,35 @@ public class MenuContoller : MonoBehaviour
     public void OnPlayButton()
     {
         FindObjectOfType<DummyPlayerContoller>().canMove = true;
-        FindObjectOfType<GameManager>().currentLevel = SelectedLevel;
+        Stats.currentLevel = selectedLevel;
         Invoke("LevelLoad", 3f);
-        gameObject.SetActive(false);
+        gameObject.SetActive(false); // Выключаем меню.
+    }
+
+    public void OnSettingsButton()
+    {
+        if (backButton.activeInHierarchy)
+            return;
+
+        StartCoroutine(ShowSomething(new Image[2] { panelBG, backImage },
+            new Text[1] { settingsText },
+            new GameObject[1] { settingsCanvas },
+            new GameObject[0]));
+
+        StopCoroutine("ShowSomething");
+    }
+
+    public void OnBackButton()
+    {
+        if (backImage.color.a < 1)
+            return;
+
+        StartCoroutine(HideSomething(new Image[2] { panelBG, backImage },
+            new Text[1] { settingsText },
+            new GameObject[0],
+            new GameObject[1] { settingsCanvas }));
+
+        StopCoroutine("HideSomething");
     }
 
     void LevelLoad()
@@ -45,6 +80,51 @@ public class MenuContoller : MonoBehaviour
 
     void Start()
     {
-        maxLevel = FindObjectOfType<GameManager>().maxLevel;
+        maxLevel = Stats.maxLevel;
+        settingsCanvas.SetActive(false);
+
+        panelBG = panel.GetComponent<Image>();
+        backImage = backButton.GetComponent<Image>();
     }
+
+    IEnumerator ShowSomething(Image[] images, Text[] texts, GameObject[] startState, GameObject[] lateState)
+    {
+        foreach (GameObject g in startState)
+            g.SetActive(true);
+
+        while (images[0].color.a < 1)
+        {
+            yield return new WaitForFixedUpdate();
+
+            foreach (Image i in images)
+                i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a + 0.0005f);
+
+            foreach (Text t in texts)
+                t.color = new Color(t.color.r, t.color.g, t.color.b, t.color.a + 0.0005f);
+        }
+
+        foreach (GameObject g in lateState)
+            g.SetActive(true);
+    }
+
+    IEnumerator HideSomething(Image[] images, Text[] texts, GameObject[] startState, GameObject[] lateState)
+    {
+        foreach (GameObject g in startState)
+            g.SetActive(false);
+
+        while (images[0].color.a > 0)
+        {
+            yield return new WaitForFixedUpdate();
+
+            foreach (Image i in images)
+                i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a - 0.0005f);
+
+            foreach (Text t in texts)
+                t.color = new Color(t.color.r, t.color.g, t.color.b, t.color.a - 0.0005f);
+        }
+
+        foreach (GameObject g in lateState)
+            g.SetActive(false);
+    }
+
 }

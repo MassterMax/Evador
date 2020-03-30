@@ -1,18 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class RotatingWall : MonoBehaviour
+public class RotatingWall : Wall
 {
     [SerializeField] float rotationSpeed = 30f; // Угол поворота в секунду
 
-    void Start()
+    public override void DefaultSettings()
     {
-        
+        transform.rotation = new Quaternion();
     }
 
     void Update()
     {
+        if (!moving)
+            return;
+
         transform.Rotate(new Vector3(0, 0, rotationSpeed * Time.deltaTime));
     }
 }

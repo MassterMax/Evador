@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [ExecuteInEditMode]
-public class MovingWall : MonoBehaviour
+public class MovingWall : Wall
 {
     [SerializeField] GameObject wall, stPoint, fPoint;
     [SerializeField] [Range(0f, 1f)] float startPos;
@@ -13,11 +11,20 @@ public class MovingWall : MonoBehaviour
 
     Vector3 directionV; // Вектор движения.
 
+    bool rememberLooking;
+
     float sqrLen; // Расстояние между точками
     float sqrLenToStart, sqrLenToFinish; // Растояние до крайних точек.
 
+    public override void DefaultSettings()
+    {
+        lookingToFinish = rememberLooking;
+        Start();
+    }
+
     void Start()
     {
+        rememberLooking = lookingToFinish;
         directionV = fPoint.transform.position - stPoint.transform.position;
         sqrLen = directionV.sqrMagnitude;
         wall.transform.position = directionV * startPos + stPoint.transform.position;
@@ -33,6 +40,9 @@ public class MovingWall : MonoBehaviour
             Start();
             return;
         }
+
+        if (!moving)
+            return;
 
         sqrLenToStart = (wall.transform.position - stPoint.transform.position).sqrMagnitude;
         sqrLenToFinish = (wall.transform.position - fPoint.transform.position).sqrMagnitude;

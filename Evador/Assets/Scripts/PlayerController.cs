@@ -9,11 +9,15 @@ public class PlayerController : MonoBehaviour
     Vector2 direction; // Направление движения по оси OX.
     Vector2 deltaX; // Расстояние половины экрана.
 
+    float defautHor, defaultVer;
+
     void Start()
     {
         deltaX = FindObjectOfType<GameManager>().deltaPos;
         deltaX.y = 0;
         TeleportCopies();
+        defaultVer = verticalSpeed;
+        defautHor = horizontalSpeed;
     }
 
     void Update()
@@ -33,11 +37,11 @@ public class PlayerController : MonoBehaviour
             if (Input.touchCount > 1)
                 direction += OnTouch(Input.GetTouch(1));
         }
-        else if ((Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Mouse1)) && Input.mousePosition.y < 1800) // Управление мышкой.
+        else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) // Управление мышкой.
         {
-            if (Input.GetKey(KeyCode.Mouse0))
+            if (Input.GetKey(KeyCode.LeftArrow))
                 direction += Vector2.left;
-            if (Input.GetKey(KeyCode.Mouse1))
+            if (Input.GetKey(KeyCode.RightArrow))
                 direction += Vector2.right;
         }
 
@@ -68,5 +72,21 @@ public class PlayerController : MonoBehaviour
     bool TouchInDeadArea(Touch t)
     {
         return t.position.y >= 1800;
+    }
+
+    public void ResetSpeed()
+    {
+        verticalSpeed = 0f;
+        horizontalSpeed = 0f;
+    }
+
+    public void DefaultParams()
+    {
+        leftCopy.GetComponent<SpriteRenderer>().color = Color.white;
+        middleCopy.GetComponent<SpriteRenderer>().color = Color.white;
+        rightCopy.GetComponent<SpriteRenderer>().color = Color.white;
+
+        verticalSpeed = defaultVer;
+        horizontalSpeed = defautHor;
     }
 }

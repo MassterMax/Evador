@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class GameMenuController : MonoBehaviour
 {
-    [SerializeField] GameObject pauseButton, continueButton, homeButton;
+    [SerializeField] GameObject pauseButton, continueButton, homeButton, panel;
 
     public void OnPauseButton()
     {
@@ -11,6 +11,7 @@ public class GameMenuController : MonoBehaviour
         pauseButton.SetActive(false);
         continueButton.SetActive(true);
         homeButton.SetActive(true);
+        panel.SetActive(true);
     }
 
     public void OnContinueButton()
@@ -19,6 +20,7 @@ public class GameMenuController : MonoBehaviour
         pauseButton.SetActive(true);
         continueButton.SetActive(false);
         homeButton.SetActive(false);
+        panel.SetActive(false);
     }
 
     public void OnHomeButton()
@@ -27,9 +29,18 @@ public class GameMenuController : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void HideAll()
+    {
+        pauseButton.SetActive(false);
+        continueButton.SetActive(false);
+        homeButton.SetActive(false);
+        panel.SetActive(true);
+    }
+
     void Start()
     {
         continueButton.SetActive(false);
         homeButton.SetActive(false);
+        panel.SetActive(false);
     }
 }

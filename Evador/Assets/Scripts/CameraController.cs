@@ -1,14 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
     [SerializeField] Transform target;
-    [SerializeField] Vector3 offset;
+    const int offset = 3;
 
     void LateUpdate()
     {
-        transform.position = new Vector3(0, target.position.y, 0) + offset;
+        transform.position = new Vector3(0, target.position.y + offset, -10);
     }
 }

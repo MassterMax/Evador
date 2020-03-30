@@ -9,7 +9,7 @@ public class DummyPlayerContoller : MonoBehaviour
     {
         if (canMove)
         {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(0, -4, 0), speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(0, -3, 0), speed * Time.deltaTime);
         }
     }
 }
