@@ -5397,6 +5397,7 @@ MonoBehaviour:
   rightCopy: {fileID: 710158789}
   verticalSpeed: 3
   horizontalSpeed: 7
+  debug: {fileID: 0}
 --- !u!4 &1237570094
 Transform:
   m_ObjectHideFlags: 0
@@ -10386,7 +10387,9 @@ MonoBehaviour:
   bg: {fileID: 767813857996859897}
   pauseButton: {fileID: 6089987353696220775}
   lvlCompleteText: {fileID: 465935247}
+  homeButton: {fileID: 6089987353259875409}
   SecondHomeButton: {fileID: 1457955221}
+  deadY: 0
   deltaPos: {x: 0, y: 0}
   width: 0
   height: 0
@@ -16271,7 +16274,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8421721699563786012}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 37, z: 14.4}
+  m_LocalPosition: {x: 0, y: 82.2, z: 14.4}
   m_LocalScale: {x: 4, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 499604417}

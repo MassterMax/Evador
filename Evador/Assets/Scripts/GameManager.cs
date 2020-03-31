@@ -9,8 +9,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject bg;
     [SerializeField] GameObject pauseButton;
     [SerializeField] Text lvlCompleteText;
+    [SerializeField] GameObject homeButton;
     [SerializeField] GameObject SecondHomeButton;
     Image bgImage;
+    public float deadY;
 
     public Vector2 deltaPos;
     public float width, height;
@@ -18,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        Stats.numOfDeaths++;
+
         pauseButton.SetActive(false);
 
         bgImage.color = Color.white;
@@ -31,8 +35,8 @@ public class GameManager : MonoBehaviour
 
     public void LevelComplete()
     {
-        if (Stats.currentLevel == Stats.maxLevel && Stats.maxLevel < Stats.numOfLevels)
-            Stats.maxLevel++;
+        if (Stats.currentLevel == Stats.MaxLevel && Stats.MaxLevel < Stats.numOfLevels)
+            Stats.MaxLevel++;
 
         StartCoroutine(Wait());
         StopCoroutine(Wait());
@@ -40,11 +44,24 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        if (homeButton != null)
+        {
+            deadY = (homeButton.transform.position.y + pauseButton.transform.position.y) / 2;
+            Debug.Log(deadY);
+        }
+
+        if (!Stats.running)
+        {
+            Stats.running = true;
+            Stats.ReadProgress();
+        }
+
         width = Camera.main.pixelWidth;
         height = Camera.main.pixelHeight;
         deltaPos = Camera.main.ScreenToWorldPoint(new Vector2(width, height));
 
         bgImage = bg.GetComponent<Image>();
+
         if (SecondHomeButton != null)
             SecondHomeButton.SetActive(false);
     }
@@ -53,8 +70,11 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
 
-        player.transform.position = new Vector2(0, -4);
+        player.transform.position = new Vector2(0, -3);
         bgImage.color = Color.black;
+
+        //yield return new WaitForSeconds(1f);
+
         FindObjectOfType<PlayerController>().DefaultParams();
         FindObjectOfType<WallsContainer>().LaunchWalls();
 
@@ -79,4 +99,6 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSecondsRealtime(.5f);
         }
     }
+
+
 }

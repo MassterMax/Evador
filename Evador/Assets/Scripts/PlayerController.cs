@@ -1,18 +1,22 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] GameObject leftCopy, middleCopy, rightCopy;
     [SerializeField] float verticalSpeed = 10f; // Вертикальная скорость.
     [SerializeField] float horizontalSpeed = 10f; // Горизонтальная скорость.
+    [SerializeField] Text debug;
 
     Vector2 direction; // Направление движения по оси OX.
     Vector2 deltaX; // Расстояние половины экрана.
+    float deadY;
 
     float defautHor, defaultVer;
 
     void Start()
     {
+        deadY = FindObjectOfType<GameManager>().deadY;
         deltaX = FindObjectOfType<GameManager>().deltaPos;
         deltaX.y = 0;
         TeleportCopies();
@@ -69,9 +73,9 @@ public class PlayerController : MonoBehaviour
         rightCopy.transform.position = (Vector2)transform.position + 2 * deltaX;
     }
 
-    bool TouchInDeadArea(Touch t)
+    public bool TouchInDeadArea(Touch t) // Если нажимаем на элемент интерфейса
     {
-        return t.position.y >= 1800;
+        return (Camera.main.ScreenToWorldPoint(t.position) - middleCopy.transform.position - new Vector3(0, 3, 0)).y >= deadY;
     }
 
     public void ResetSpeed()

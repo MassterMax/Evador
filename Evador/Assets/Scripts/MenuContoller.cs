@@ -11,9 +11,9 @@ public class MenuContoller : MonoBehaviour
 
     [SerializeField] GameObject panel;
     [SerializeField] GameObject backButton;
-    [SerializeField] GameObject settingsButton;
+    [SerializeField] GameObject hidingPanel;
     [SerializeField] GameObject settingsCanvas;
-    Image panelBG, backImage;
+    Image panelBG, backImage, hidingImage;
 
     string[] levels = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X" };
 
@@ -44,7 +44,14 @@ public class MenuContoller : MonoBehaviour
         FindObjectOfType<DummyPlayerContoller>().canMove = true;
         Stats.currentLevel = selectedLevel;
         Invoke("LevelLoad", 3f);
-        gameObject.SetActive(false); // Выключаем меню.
+
+        hidingPanel.SetActive(true);
+
+        StartCoroutine(ShowSomething(new Image[1] { hidingImage},
+            new Text[0],
+            new GameObject[0],
+            new GameObject[0]));
+        StopCoroutine("ShowSomething");
     }
 
     public void OnSettingsButton()
@@ -80,11 +87,22 @@ public class MenuContoller : MonoBehaviour
 
     void Start()
     {
-        maxLevel = Stats.maxLevel;
-        settingsCanvas.SetActive(false);
-
+        settingsText.text = $"Спасибо за помощь в разработке!\r\nВы умерли {Stats.numOfDeaths} раз!";
         panelBG = panel.GetComponent<Image>();
         backImage = backButton.GetComponent<Image>();
+        hidingImage = hidingPanel.GetComponent<Image>();
+
+        maxLevel = Stats.MaxLevel;
+
+        StartCoroutine(HideSomething(new Image[1] { panelBG },
+            new Text[0],
+            new GameObject[1] { hidingPanel},
+            new GameObject[1] {settingsCanvas}));
+
+        StopCoroutine("HideSomething");
+
+        SelectedLevel = maxLevel;
+        levelText.text = levels[SelectedLevel - 1];
     }
 
     IEnumerator ShowSomething(Image[] images, Text[] texts, GameObject[] startState, GameObject[] lateState)
