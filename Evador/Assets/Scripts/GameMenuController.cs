@@ -25,6 +25,8 @@ public class GameMenuController : MonoBehaviour
 
     public void OnHomeButton()
     {
+        Stats.SaveProgress(Stats.MaxLevel);
+        Stats.running = false;
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
     }
@@ -35,6 +37,16 @@ public class GameMenuController : MonoBehaviour
         continueButton.SetActive(false);
         homeButton.SetActive(false);
         panel.SetActive(true);
+    }
+
+    void Awake()
+    {
+     if (Screen.height != Screen.safeArea.height)
+        {
+            Vector3 delta = continueButton.transform.position - homeButton.transform.position;
+            continueButton.transform.position = pauseButton.transform.position = homeButton.transform.position;
+            homeButton.transform.position -= delta;
+        }    
     }
 
     void Start()

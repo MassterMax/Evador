@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
         deltaX.y = 0;
         TeleportCopies();
         defaultVer = verticalSpeed;
-        defautHor = horizontalSpeed;
+        defautHor = horizontalSpeed = Stats.horizontalSpeed;
     }
 
     void Update()

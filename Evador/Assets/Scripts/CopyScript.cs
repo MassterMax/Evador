@@ -5,13 +5,13 @@ public class CopyScript : MonoBehaviour
 {
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer != 9)
+        if (collision.gameObject.layer == 8) //wall
         {
             FindObjectOfType<GameManager>().GameOver();
             StartCoroutine(HidePlayer());
             StopCoroutine(HidePlayer());
         }
-        else
+        else if (collision.gameObject.layer == 9)
         {
             FindObjectOfType<GameManager>().LevelComplete();
         }
