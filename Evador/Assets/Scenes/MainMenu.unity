@@ -2529,7 +2529,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  bg: {fileID: 957929303080587363}
+  WhiteBG: {fileID: 0}
   pauseButton: {fileID: 0}
   lvlCompleteText: {fileID: 0}
   homeButton: {fileID: 0}

@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
         height = Camera.main.pixelHeight;
         deltaPos = Camera.main.ScreenToWorldPoint(new Vector2(width, height));
 
-        WhiteBG.SetActive(false);
+        if (WhiteBG != null) WhiteBG.SetActive(false);
 
         if (SecondHomeButton != null)
             SecondHomeButton.SetActive(false);

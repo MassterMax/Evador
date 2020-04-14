@@ -5,7 +5,7 @@ public class CopyScript : MonoBehaviour
 {
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == 8) //wall
+        if (collision.gameObject.layer == 8 && Mathf.Abs(transform.position.x) < 3) //wall
         {
             FindObjectOfType<GameManager>().GameOver();
             StartCoroutine(HidePlayer());
