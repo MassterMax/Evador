@@ -6,7 +6,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject leftCopy, middleCopy, rightCopy;
     [SerializeField] float verticalSpeed = 10f; // Вертикальная скорость.
     [SerializeField] float horizontalSpeed = 10f; // Горизонтальная скорость.
-    [SerializeField] Text debug;
 
     Vector2 direction; // Направление движения по оси OX.
     Vector2 deltaX; // Расстояние половины экрана.

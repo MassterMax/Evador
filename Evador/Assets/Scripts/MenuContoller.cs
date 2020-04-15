@@ -8,6 +8,10 @@ public class MenuContoller : MonoBehaviour
 {
     [SerializeField] Text levelText;
     [SerializeField] Text settingsText;
+    [SerializeField] Text locationText;
+
+    [SerializeField] Image levelBox;
+    //[SerializeField] SpriteRenderer Hex;
 
     [SerializeField] GameObject panel;
     [SerializeField] GameObject backButton;
@@ -19,10 +23,13 @@ public class MenuContoller : MonoBehaviour
     [SerializeField] GameObject slider1;
     [SerializeField] GameObject slider2;
     [SerializeField] GameObject slider3;
+    [SerializeField] GameObject musicButton;
 
-    Image panelBG, backImage, hidingImage, slider1Image, slider2Image, slider3Image;
+    Image panelBG, backImage, hidingImage, slider1Image, slider2Image, slider3Image, musicImage;
 
-    string[] levels = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X" };
+    string[] levels = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII" };
+    string[] locations = { "abstract space", "candy land", "deep swarm", "my office" };
+    Color32[] colors = { Color.white, new Color32(255, 134, 149, 255), new Color32(32, 106, 73, 255), new Color32(228, 200, 100, 255) };
 
     int maxLevel;
     int selectedLevel = 1;
@@ -38,12 +45,26 @@ public class MenuContoller : MonoBehaviour
     {
         SelectedLevel--;
         levelText.text = levels[selectedLevel - 1];
+        levelText.color = colors[(selectedLevel - 1) / 3];
+
+        locationText.color = colors[(selectedLevel - 1) / 3];
+        locationText.text = locations[(selectedLevel - 1) / 3];
+
+        levelBox.color = colors[(selectedLevel - 1) / 3];
     }
 
     public void OnRightButton()
     {
         SelectedLevel++;
         levelText.text = levels[selectedLevel - 1];
+        levelText.color = colors[(selectedLevel - 1) / 3];
+
+        locationText.color = colors[(selectedLevel - 1) / 3];
+        locationText.text = locations[(selectedLevel - 1) / 3];
+
+        levelBox.color = colors[(selectedLevel - 1) / 3];
+
+        //Debug.Log(levelText.color + " " + colors[(selectedLevel - 1) / 3]);
     }
 
     public void OnPlayButton()
@@ -66,7 +87,7 @@ public class MenuContoller : MonoBehaviour
         if (backButton.activeInHierarchy)
             return;
 
-        StartCoroutine(ShowSomething(new Image[5] { panelBG, backImage, slider1Image, slider2Image, slider3Image },
+        StartCoroutine(ShowSomething(new Image[6] { panelBG, backImage, slider1Image, slider2Image, slider3Image, musicImage },
             new Text[1] { settingsText },
             new GameObject[1] { settingsCanvas },
             new GameObject[0]));
@@ -79,7 +100,7 @@ public class MenuContoller : MonoBehaviour
         if (backImage.color.a < 1)
             return;
 
-        StartCoroutine(HideSomething(new Image[5] { panelBG, backImage, slider1Image, slider2Image, slider3Image },
+        StartCoroutine(HideSomething(new Image[6] { panelBG, backImage, slider1Image, slider2Image, slider3Image, musicImage },
             new Text[1] { settingsText },
             new GameObject[0],
             new GameObject[1] { settingsCanvas }));
@@ -93,6 +114,17 @@ public class MenuContoller : MonoBehaviour
         Stats.SaveProgress(maxLevel);
     }
 
+    public void OnMusic()
+    {
+        Stats.music = !Stats.music;
+        if (Stats.music)
+            musicImage.color = new Color32(255, 255, 255, 255);
+        else
+            musicImage.color = new Color32(130, 130, 130, 255);
+
+        Stats.SaveProgress(maxLevel);
+    }
+
     void LevelLoad()
     {
         SceneManager.LoadScene(SelectedLevel);
@@ -100,6 +132,7 @@ public class MenuContoller : MonoBehaviour
 
     void Start()
     {
+        //Debug.Log(Application.persistentDataPath + "/data");
         if (Screen.height != Screen.safeArea.height)
         {
             Vector3 delta = settingsButton.transform.position - secondSettingsButton.transform.position;
@@ -118,6 +151,7 @@ public class MenuContoller : MonoBehaviour
         slider1Image = slider1.GetComponent<Image>();
         slider2Image = slider2.GetComponent<Image>();
         slider3Image = slider3.GetComponent<Image>();
+        musicImage = musicButton.GetComponent<Image>();
 
         maxLevel = Stats.MaxLevel;
 
@@ -128,8 +162,17 @@ public class MenuContoller : MonoBehaviour
 
         StopCoroutine("HideSomething");
 
+        if (Stats.music)
+            musicImage.color = new Color32(255, 255, 255, 0);
+        else
+            musicImage.color = new Color32(130, 130, 130, 0);
+
         SelectedLevel = maxLevel;
         levelText.text = levels[SelectedLevel - 1];
+        locationText.text = locations[(SelectedLevel - 1) / 3];
+        levelText.color = colors[(selectedLevel - 1) / 3];
+        locationText.color = colors[(selectedLevel - 1) / 3];
+        levelBox.color = colors[(selectedLevel - 1) / 3];
 
         slider.GetComponent<Slider>().value = Stats.horizontalSpeed;
     }

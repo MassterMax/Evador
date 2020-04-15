@@ -19,6 +19,6 @@ public class WallsContainer : MonoBehaviour
     {
         foreach (Wall w in walls)
             if (w != null)
-                w.moving = true;
+                w.Restart();
     }
 }
