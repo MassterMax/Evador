@@ -5500,8 +5500,6 @@ MonoBehaviour:
   middleCopy: {fileID: 2225366667035569474}
   rightCopy: {fileID: 710158789}
   verticalSpeed: 3
-  horizontalSpeed: 7
-  debug: {fileID: 0}
 --- !u!4 &1237570094
 Transform:
   m_ObjectHideFlags: 0
@@ -10494,6 +10492,8 @@ MonoBehaviour:
   homeButton: {fileID: 6089987353259875409}
   SecondHomeButton: {fileID: 1457955221}
   finishSR: {fileID: 8421721699563786017}
+  shardNumber: 0
+  shardCollected: 0
   deadY: 0
   deltaPos: {x: 0, y: 0}
   width: 0

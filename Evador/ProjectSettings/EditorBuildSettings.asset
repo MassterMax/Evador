@@ -23,4 +23,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/train.unity
     guid: f3ebd8710b296504db4a291a4bd53f29
+  - enabled: 1
+    path: Assets/Scenes/Candy World/Level4.unity
+    guid: 2b3d3c60345d2134e8113cf023f4b210
+  - enabled: 1
+    path: Assets/Scenes/Candy World/Level5.unity
+    guid: 3530b063cb83ef545a9678ffe3b7807d
+  - enabled: 1
+    path: Assets/Scenes/Candy World/Level6.unity
+    guid: 1e9692ff614423346bb7a561dd1e967f
   m_configObjects: {}

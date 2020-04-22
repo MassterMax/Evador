@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4959357681514664602}
   - component: {fileID: 1076841489111114622}
   - component: {fileID: 954394162203731579}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LittleCandy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,3 +136,4 @@ MonoBehaviour:
   rotationSpeed: 90
   realizationTime: 3
   maxScale: 0.5
+  startScale: {x: 0, y: 0, z: 0}
