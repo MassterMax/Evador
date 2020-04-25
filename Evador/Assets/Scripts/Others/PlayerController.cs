@@ -10,8 +10,10 @@ public class PlayerController : MonoBehaviour
     Vector2 direction; // Направление движения по оси OX.
     Vector2 deltaX; // Расстояние половины экрана.
     float deadY;
-
     float defautHor, defaultVer;
+
+    float dK = 0.1f;
+    float K = 0.1f; // Надо, чтобы симулировать "разгон игрока"
 
     void Start()
     {
@@ -35,6 +37,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.touchCount > 0) // Управление пальцами.
         {
+            K += dK;
             direction = OnTouch(Input.GetTouch(0));
 
             if (Input.touchCount > 1)
@@ -42,15 +45,20 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) // Управление мышкой.
         {
+            K += dK;
             if (Input.GetKey(KeyCode.LeftArrow))
                 direction += Vector2.left;
             if (Input.GetKey(KeyCode.RightArrow))
                 direction += Vector2.right;
         }
+        else
+            K = 0.1f;
+
+        K = K > 1 ? 1 : K;
 
         direction = direction.normalized;
 
-        transform.Translate((Vector2.up * verticalSpeed + direction * horizontalSpeed) * Time.deltaTime);
+        transform.Translate((Vector2.up * verticalSpeed + direction * horizontalSpeed * K) * Time.deltaTime);
     }
 
     Vector2 OnTouch(Touch t)

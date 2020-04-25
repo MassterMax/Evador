@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 public class MenuContoller : MonoBehaviour
 {
@@ -12,20 +13,42 @@ public class MenuContoller : MonoBehaviour
 
     [SerializeField] List<GameObject> shardsImages;
 
-    [SerializeField] GameObject backButton, settingsButton, secondSettingsButton;
+    [SerializeField] GameObject backButton, settingsButton, questionButton;
     [SerializeField] GameObject settingsMenu;
 
-    [SerializeField] GameObject hidingPanel;
+    [SerializeField] GameObject tutorialCanvas;
+
+    [SerializeField] GameObject hexagon;
+
+    [SerializeField] GameObject hidingPanel, secondHidingPanel;
     [SerializeField] GameObject musicButton;
+
+    [SerializeField] GameObject endMenu;
+
     Image hidingPanelImage, musicIconImage;
+
+    [SerializeField] GameObject No, Yes;
+
+    List<Image> shardsIm = new List<Image>();
 
     string[] levels = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII" };
     string[] locations = { "abstract space", "candy land", "deep swarm", "my office" };
     Color32[] colors = { Color.white, new Color32(255, 134, 149, 255), new Color32(32, 106, 73, 255), new Color32(228, 200, 100, 255) };
 
+    AudioClip final;
+
+    bool hexPressed = false;
     int maxLevel;
     int selectedLevel = 1;
-    public int SelectedLevel { get => selectedLevel; set { if (0 < value && value <= maxLevel + 1 && value <= Stats.numOfLevels) selectedLevel = value; } }
+    public int SelectedLevel
+    {
+        get => selectedLevel;
+
+        set {
+            if (0 < value && value <= maxLevel + 1 && value <= Stats.numOfLevels)
+                selectedLevel = value;
+        }
+    }
 
     public void OnCloseButton()
     {
@@ -62,7 +85,14 @@ public class MenuContoller : MonoBehaviour
 
     public void OnBackButton()
     {
+        OnNotResetButton();
         settingsMenu.SetActive(false);
+    }
+
+    public void OnQuestionButton()
+    {
+        tutorialCanvas.SetActive(true);
+        FindObjectOfType<TutorialScripts>().PlayTutorial();
     }
 
     public void OnMusicButton()
@@ -72,9 +102,43 @@ public class MenuContoller : MonoBehaviour
         SetMusic();
     }
 
+    public void OnResetButton()
+    {
+        if (File.Exists(Stats.path))
+            File.Delete(Stats.path);
+        Application.Quit();
+    }
+
+    public void OnNotResetButton()
+    {
+        No.SetActive(false);
+        Yes.SetActive(false);
+    }
+
+    public void OnPreResetButton()
+    {
+        No.SetActive(!No.activeSelf);
+        Yes.SetActive(!Yes.activeSelf);
+    }
+
     public void OnHexagon()
     {
+        if (Stats.numOfShards == 6 && !hexPressed)
+        {
+            //hexPressed = true;
+            secondHidingPanel.SetActive(true);
+            FindObjectOfType<AudioManager>().GetComponent<AudioSource>().clip = final;
 
+            //Debug.Log(Resources.Load("Music/final"));
+
+            FindObjectOfType<AudioManager>().GetComponent<AudioSource>().Play();
+            FindObjectOfType<AudioManager>().GetComponent<AudioSource>().loop = false;
+
+            foreach (GameObject g in shardsImages)
+                shardsIm.Add(g.GetComponent<Image>());
+
+            StartCoroutine(hexRounding());
+        }
     }
 
     void LevelLoad()
@@ -82,27 +146,47 @@ public class MenuContoller : MonoBehaviour
         SceneManager.LoadScene(SelectedLevel);
     }
 
+    void Awake()
+    {
+        tutorialCanvas.SetActive(false);
+        if (!File.Exists(Stats.path))
+            OnQuestionButton();
+    }
+
     void Start()
     {
         if (Screen.height != Screen.safeArea.height)
         {
-            Vector3 delta = settingsButton.transform.position - secondSettingsButton.transform.position;
-            settingsButton.transform.position = backButton.transform.position += delta;
+            Vector3 delta = questionButton.transform.position - settingsButton.transform.position;
+            settingsButton.transform.position = backButton.transform.position = questionButton.transform.position;
+            questionButton.transform.position += delta;
         }
 
+        OnNotResetButton();
         settingsMenu.SetActive(false);
         hidingPanel.SetActive(false);
+        secondHidingPanel.SetActive(false);
+        endMenu.SetActive(false);
 
         musicIconImage = musicButton.GetComponent<Image>();
         hidingPanelImage = hidingPanel.GetComponent<Image>();
 
+        //Debug.Log(Stats.maxLevel);
         SelectedLevel = maxLevel = Stats.maxLevel;
         SelectedLevel += 1;
+        //Debug.Log(SelectedLevel);
 
         SetShards();
         SetMusic();
         SetSettingsText();
         SetMenuTextAndColor();
+
+        Invoke("LoadSources", 0.1f);
+    }
+
+    void LoadSources()
+    {
+        final = (AudioClip)Resources.Load("Music/final");
     }
 
     IEnumerator ImageFading(Image im)
@@ -154,5 +238,54 @@ public class MenuContoller : MonoBehaviour
         }
         //Debug.Log(count);
         Stats.numOfShards = count;
+    }
+
+    IEnumerator hexRounding()
+    {
+        float time = 0f;
+        float timer2 = 0f;
+        float speedMulti = 1;
+        float maxTime = 10f;
+        while (time < maxTime)
+        {
+            yield return new WaitForFixedUpdate();
+            speedMulti = 1 + F(time);
+            time += Time.fixedDeltaTime;
+            timer2 += Time.fixedDeltaTime;
+
+            if (timer2 > 0.2f)
+            {
+                foreach (Image s in shardsIm)
+                    ColorFading(s);
+                //Debug.Log("iteration");
+                timer2 -= 0.2f;
+            }
+
+            hexagon.transform.Rotate(Vector3.forward * 180 * speedMulti * Time.fixedDeltaTime);
+            hexagon.transform.localScale += (new Vector3(1.5f, 1.5f, 0) * speedMulti * Time.deltaTime);
+
+            if (time > 8f && !endMenu.activeSelf)
+                endMenu.SetActive(true);
+        }
+        FindObjectOfType<EndMenuScript>().PlayEnd();
+    }
+
+    float F(float x)
+    {
+        if (x < 0 || x > 8)
+            return 0;
+        float output = 3 - Mathf.Abs(2 * x / 5f - 2);
+        if (x < 5f)
+            output -= 0.5f;
+        else
+            output += 0.5f;
+        return output;
+    }
+
+    void ColorFading(Image i)
+    {
+        //Debug.Log(i.color);
+        i.color += new Color(0.03f, 0.03f, 0.03f);
+
     }
 }

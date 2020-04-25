@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject SecondHomeButton;
     [SerializeField] SpriteRenderer finishSR;
 
+    [SerializeField] GameObject playBUTTON;
+
     public int shardNumber;
     public bool shardCollected;
 
@@ -24,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        gameHasStarted = false;
         Stats.numOfDeaths++;
 
         pauseButton.SetActive(false);
@@ -59,8 +62,15 @@ public class GameManager : MonoBehaviour
         float w = Screen.width;
 
         if (h < w) { Application.Quit(); }
-        float orthoSize = finishSR.bounds.size.x * h / w * 0.5f; //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        Camera.main.orthographicSize = orthoSize;                                       //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+        float orthoSize = finishSR.bounds.size.x * h / w * 0.5f;
+        //Debug.Log(orthoSize + " " + Camera.main.orthographicSize);
+        float k = Camera.main.orthographicSize / orthoSize;
+        Camera.main.orthographicSize = orthoSize;
+        if (playBUTTON != null)
+            playBUTTON.transform.localScale *= k;
+
 
         if (homeButton != null)
         {
@@ -82,7 +92,10 @@ public class GameManager : MonoBehaviour
         if (WhiteBG != null) WhiteBG.SetActive(false);
 
         if (SecondHomeButton != null)
+        {
             SecondHomeButton.SetActive(false);
+            gameHasStarted = true;
+        }
 
     }
 
@@ -99,6 +112,7 @@ public class GameManager : MonoBehaviour
         FindObjectOfType<WallsContainer>().LaunchWalls();
 
         pauseButton.SetActive(true);
+        gameHasStarted = true;
     }
 
     IEnumerator Wait()

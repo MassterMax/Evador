@@ -5,7 +5,7 @@ using UnityEngine;
 
 public static class Stats
 {
-    static string path = Application.persistentDataPath + "/data";
+    public static string path = Application.persistentDataPath + "/.data";
 
     public static bool running = false;
     public static int currentLevel = 1;
