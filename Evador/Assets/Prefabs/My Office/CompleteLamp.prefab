@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4084586910811125491}
   - component: {fileID: 4084586910811125488}
   - component: {fileID: 4084586910811125489}
-  - component: {fileID: 4084586910811125502}
   - component: {fileID: 4084586910811125503}
   m_Layer: 8
   m_Name: MothL
@@ -143,27 +142,6 @@ PolygonCollider2D:
       - {x: 0.19999999, y: -0.68}
       - {x: 0.26999998, y: -0.59999996}
       - {x: 0.29999998, y: -0.55}
---- !u!50 &4084586910811125502
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4084586910811125490}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!114 &4084586910811125503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,7 +167,6 @@ GameObject:
   - component: {fileID: 4084586910907565220}
   - component: {fileID: 4084586910907565216}
   - component: {fileID: 4084586910907565219}
-  - component: {fileID: 4084586910907565218}
   - component: {fileID: 4084586910907565221}
   m_Layer: 10
   m_Name: TriggerS
@@ -287,27 +264,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.56, y: 2.56}
   m_EdgeRadius: 0
---- !u!50 &4084586910907565218
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4084586910907565223}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!114 &4084586910907565221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,7 +345,6 @@ GameObject:
   - component: {fileID: 4084586912685037011}
   - component: {fileID: 4084586912685037010}
   - component: {fileID: 4084586912685037013}
-  - component: {fileID: 4084586912685037012}
   - component: {fileID: 4084586912685037015}
   m_Layer: 8
   m_Name: MothR
@@ -521,27 +476,6 @@ PolygonCollider2D:
       - {x: 0.19999999, y: -0.68}
       - {x: 0.26999998, y: -0.59999996}
       - {x: 0.29999998, y: -0.55}
---- !u!50 &4084586912685037012
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4084586912685037014}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!114 &4084586912685037015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -567,7 +501,6 @@ GameObject:
   - component: {fileID: 4084586912719525173}
   - component: {fileID: 4084586912719525169}
   - component: {fileID: 4084586912719525168}
-  - component: {fileID: 4084586912719525171}
   - component: {fileID: 4084586912719525170}
   m_Layer: 8
   m_Name: MothM
@@ -699,27 +632,6 @@ PolygonCollider2D:
       - {x: 0.19999999, y: -0.68}
       - {x: 0.26999998, y: -0.59999996}
       - {x: 0.29999998, y: -0.55}
---- !u!50 &4084586912719525171
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4084586912719525172}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!114 &4084586912719525170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -905,7 +817,6 @@ GameObject:
   - component: {fileID: 4487407934150848584}
   - component: {fileID: 4487407934150848585}
   - component: {fileID: 4487407934150848630}
-  - component: {fileID: 4487407934150848631}
   - component: {fileID: 4487407934150848629}
   m_Layer: 10
   m_Name: TriggerF
@@ -1003,27 +914,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.56, y: 2.56}
   m_EdgeRadius: 0
---- !u!50 &4487407934150848631
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4487407934150848628}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!114 &4487407934150848629
 MonoBehaviour:
   m_ObjectHideFlags: 0

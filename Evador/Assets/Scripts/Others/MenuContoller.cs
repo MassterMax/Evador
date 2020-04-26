@@ -31,11 +31,13 @@ public class MenuContoller : MonoBehaviour
 
     List<Image> shardsIm = new List<Image>();
 
+    AudioManager AM;
+
     string[] levels = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII" };
     string[] locations = { "abstract space", "candy land", "deep swarm", "my office" };
     Color32[] colors = { Color.white, new Color32(255, 134, 149, 255), new Color32(32, 106, 73, 255), new Color32(228, 200, 100, 255) };
 
-    AudioClip final;
+
 
     bool hexPressed = false;
     int maxLevel;
@@ -125,14 +127,12 @@ public class MenuContoller : MonoBehaviour
     {
         if (Stats.numOfShards == 6 && !hexPressed)
         {
-            //hexPressed = true;
-            secondHidingPanel.SetActive(true);
-            FindObjectOfType<AudioManager>().GetComponent<AudioSource>().clip = final;
+            AM.SetFinal();
+            AM.SetLoop(false);
+            AM.Play();
 
-            //Debug.Log(Resources.Load("Music/final"));
+            secondHidingPanel.SetActive(true); // Включаем панель, которая не дает нажимать на кнопочки
 
-            FindObjectOfType<AudioManager>().GetComponent<AudioSource>().Play();
-            FindObjectOfType<AudioManager>().GetComponent<AudioSource>().loop = false;
 
             foreach (GameObject g in shardsImages)
                 shardsIm.Add(g.GetComponent<Image>());
@@ -171,22 +171,13 @@ public class MenuContoller : MonoBehaviour
         musicIconImage = musicButton.GetComponent<Image>();
         hidingPanelImage = hidingPanel.GetComponent<Image>();
 
-        //Debug.Log(Stats.maxLevel);
         SelectedLevel = maxLevel = Stats.maxLevel;
         SelectedLevel += 1;
-        //Debug.Log(SelectedLevel);
 
         SetShards();
         SetMusic();
         SetSettingsText();
         SetMenuTextAndColor();
-
-        Invoke("LoadSources", 0.1f);
-    }
-
-    void LoadSources()
-    {
-        final = (AudioClip)Resources.Load("Music/final");
     }
 
     IEnumerator ImageFading(Image im)
@@ -220,7 +211,9 @@ public class MenuContoller : MonoBehaviour
         else
             musicIconImage.color = new Color32(130, 130, 130, 255);
 
-        FindObjectOfType<AudioManager>().GetComponent<AudioSource>().mute = !Stats.music; // СТРАШНА
+        AM = FindObjectOfType<AudioManager>();
+
+        AM.Mute(!Stats.music);
     }
 
     void SetShards()

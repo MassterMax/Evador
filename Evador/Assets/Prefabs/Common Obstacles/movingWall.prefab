@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec10317dd38f1f479e606bf4ea709a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moving: 1
   wall: {fileID: 3785270942068230757}
   stPoint: {fileID: 3634084149189495536}
   fPoint: {fileID: 3634084150400913159}
@@ -124,7 +125,6 @@ GameObject:
   - component: {fileID: 3785270942068230745}
   - component: {fileID: 3785270942068230744}
   - component: {fileID: 3785270942068230759}
-  - component: {fileID: 3785270942068230758}
   m_Layer: 8
   m_Name: wall
   m_TagString: Untagged
@@ -221,24 +221,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.56, y: 2.56}
   m_EdgeRadius: 0
---- !u!50 &3785270942068230758
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3785270942068230757}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4

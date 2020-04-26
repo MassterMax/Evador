@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4563577527483711424}
   - component: {fileID: 4563577527483711431}
-  - component: {fileID: 4563577527483711426}
   - component: {fileID: 4563577527483711425}
   m_Layer: 8
   m_Name: BadCandyLine
@@ -82,27 +81,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &4563577527483711426
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4563577527483711430}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!68 &4563577527483711425
 EdgeCollider2D:
   m_ObjectHideFlags: 0

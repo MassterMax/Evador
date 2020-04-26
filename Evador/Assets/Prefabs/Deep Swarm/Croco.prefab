@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1423370597239222915}
   - component: {fileID: 1423370597239222914}
   - component: {fileID: 1423370597239222973}
-  - component: {fileID: 1423370597239222972}
   - component: {fileID: 1423370597239222974}
   m_Layer: 10
   m_Name: Trigger
@@ -109,27 +108,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.56, y: 2.56}
   m_EdgeRadius: 0
---- !u!50 &1423370597239222972
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1423370597239222975}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!114 &1423370597239222974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,7 +187,6 @@ GameObject:
   - component: {fileID: 5642665443293093567}
   - component: {fileID: 5642665443293093564}
   - component: {fileID: 5642665443293093538}
-  - component: {fileID: 5642665443293093565}
   m_Layer: 8
   m_Name: JawB
   m_TagString: Untagged
@@ -385,27 +362,6 @@ PolygonCollider2D:
       - {x: -1.4599999, y: -0.53}
       - {x: -1.31, y: -0.26999998}
       - {x: -1.1999999, y: -0.08}
---- !u!50 &5642665443293093565
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5642665443293093561}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!1 &5642665443452389280
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,7 +453,6 @@ GameObject:
   - component: {fileID: 5642665444109581410}
   - component: {fileID: 5642665444109581411}
   - component: {fileID: 5642665444109581408}
-  - component: {fileID: 5642665444109581414}
   - component: {fileID: 5642665444109581409}
   m_Layer: 8
   m_Name: JawU
@@ -585,27 +540,6 @@ MonoBehaviour:
   head: {fileID: 5642665444946517235}
   MaxDifference: 5
   phase: 0
---- !u!50 &5642665444109581414
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5642665444109581437}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!60 &5642665444109581409
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -865,7 +799,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5642665444720022761}
   - component: {fileID: 5642665444720022766}
-  - component: {fileID: 5642665444720022764}
   - component: {fileID: 5642665444720022767}
   m_Layer: 8
   m_Name: Neck
@@ -937,27 +870,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &5642665444720022764
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5642665444720022760}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!68 &5642665444720022767
 EdgeCollider2D:
   m_ObjectHideFlags: 0

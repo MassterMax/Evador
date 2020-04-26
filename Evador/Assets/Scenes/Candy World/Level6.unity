@@ -12335,6 +12335,7 @@ MonoBehaviour:
   homeButton: {fileID: 6089987353259875409}
   SecondHomeButton: {fileID: 1457955221}
   finishSR: {fileID: 1388875944}
+  playBUTTON: {fileID: 0}
   shardNumber: 0
   shardCollected: 0
   deadY: 0
@@ -18545,7 +18546,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2da7aecd09ce0d44d8920ca29e2f330b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 84b27f8677ed40848a5d49908bdfc776, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

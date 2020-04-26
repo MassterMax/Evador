@@ -24,9 +24,9 @@ public class EndMenuScript : MonoBehaviour
     {
         if (canSkip && (Input.touchCount > 0 || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)))
         {
-            FindObjectOfType<AudioManager>().GetComponent<AudioSource>().clip = (AudioClip) Resources.Load("Music/default");
-            FindObjectOfType<AudioManager>().GetComponent<AudioSource>().Play();
-            FindObjectOfType<AudioManager>().GetComponent<AudioSource>().loop = true;
+            FindObjectOfType<AudioManager>().SetStart();
+            FindObjectOfType<AudioManager>().Play();
+            FindObjectOfType<AudioManager>().SetLoop(true);
             SceneManager.LoadScene(0);
         }
     }

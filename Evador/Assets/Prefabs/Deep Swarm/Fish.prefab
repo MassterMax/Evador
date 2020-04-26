@@ -220,7 +220,6 @@ GameObject:
   - component: {fileID: 806133595051892793}
   - component: {fileID: 806133595051892798}
   - component: {fileID: 806133595051892799}
-  - component: {fileID: 806133595051892796}
   m_Layer: 8
   m_Name: FishBody
   m_TagString: Untagged
@@ -438,24 +437,3 @@ PolygonCollider2D:
       - {x: 0.37, y: -4.33}
       - {x: 0.5, y: -4.25}
       - {x: 0.59999996, y: -4.18}
---- !u!50 &806133595051892796
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 806133595051892792}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
