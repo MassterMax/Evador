@@ -9,7 +9,7 @@ public static class Stats
 
     public static bool running = false;
     public static int currentLevel = 1;
-    public static int numOfLevels = 6; // Количество сделанных уровней
+    public static int numOfLevels = 9; // Количество сделанных уровней
     public static int maxLevel = 0; // Количество пройденных уровней
     public static int numOfDeaths = 0;
     public static int numOfShards = 0;

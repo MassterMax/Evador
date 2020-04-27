@@ -56,9 +56,9 @@ public class JawScript : Wall
             currentAngle = currentAngle <= 180 ? currentAngle : currentAngle - 360f;
 
             if (-45 - currentAngle > 0.01)
-                transform.RotateAround(head.transform.position, Vector3.forward, 40 * Time.deltaTime);
+                transform.RotateAround(head.transform.position, Vector3.forward, 45 * Time.deltaTime);
             else if (currentAngle + 35 > 0.1)
-                transform.RotateAround(head.transform.position, Vector3.forward, -40 * Time.deltaTime);
+                transform.RotateAround(head.transform.position, Vector3.forward, -45 * Time.deltaTime);
         }
     }
 }

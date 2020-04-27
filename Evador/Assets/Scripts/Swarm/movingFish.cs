@@ -19,6 +19,10 @@ public class movingFish : Wall
     public override void DefaultSettings()
     {
         lookingToFinish = rememberLooking;
+
+        if (wall.transform.localScale.x < 0)
+            wall.transform.localScale *= -1;
+
         Start();
     }
 
