@@ -56,4 +56,10 @@ public class GameMenuController : MonoBehaviour
         homeButton.SetActive(false);
         panel.SetActive(false);
     }
+
+    void OnApplicationPause(bool pause)
+    {
+        if (pause)
+           OnPauseButton();
+    }
 }

@@ -42,6 +42,12 @@ public class GameManager : MonoBehaviour
         Stats.SaveProgress(Stats.maxLevel);
     }
 
+    public void Teleport()
+    {
+        player.transform.position = new Vector2(0, -3);
+        FindObjectOfType<WallsContainer>().DoDefaultSettings();
+    }
+
     public void LevelComplete()
     {
         if (Stats.currentLevel == Stats.maxLevel + 1 && Stats.maxLevel <= Stats.numOfLevels)

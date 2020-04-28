@@ -41,4 +41,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Deep Swarm/Level9.unity
     guid: 20105c2634649764fb19330cd6c7186c
+  - enabled: 1
+    path: Assets/Scenes/My Office/Level10.unity
+    guid: 262d326dc7ef45e4795f413e2d65694f
+  - enabled: 1
+    path: Assets/Scenes/My Office/Level11.unity
+    guid: 3dfd1ef4b4efb95478c238c3801b23cb
+  - enabled: 1
+    path: Assets/Scenes/My Office/Level12.unity
+    guid: 907914d4d583d664684380b7f82492ff
   m_configObjects: {}
