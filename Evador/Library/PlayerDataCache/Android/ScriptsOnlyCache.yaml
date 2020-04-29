@@ -1584,7 +1584,7 @@ ScriptsOnlyBuild:
     className: MarkerTrack
   - hash:
       serializedVersion: 2
-      Hash: 0cbd237f2fb0b6423fe05b37c3a8f06b
+      Hash: 5444251e3cc55150ea126bb3a8e3a23a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LittleSceneScript
@@ -1729,4 +1729,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/My Office/Level10.unity
   - Assets/Scenes/My Office/Level11.unity
   - Assets/Scenes/My Office/Level12.unity
-  playerPath: C:/Users/maxma/Desktop/Evador-0-3-2.apk
+  playerPath: C:/Users/maxma/Desktop/Evador-0-3-3.apk

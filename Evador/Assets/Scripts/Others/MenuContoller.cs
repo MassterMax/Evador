@@ -35,7 +35,7 @@ public class MenuContoller : MonoBehaviour
     AudioManager AM;
 
     string[] levels = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII" };
-    string[] locations = { "abstract space", "candy land", "deep swarm", "my office" };
+    string[] locations = { "abstract space", "candy land", "deep swamp", "my office" };
     Color32[] colors = { Color.white, new Color32(255, 134, 149, 255), new Color32(32, 106, 73, 255), new Color32(228, 200, 100, 255) };
 
 

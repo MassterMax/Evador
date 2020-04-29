@@ -7,10 +7,11 @@ public class LittleSceneScript : MonoBehaviour
 {
     [SerializeField] Image leftPanel, rightPanel;
     [SerializeField] GameObject player;
+    [SerializeField] GameObject leftFinger, rightFinger;
     Vector2 start, finish;
     float dtime = 0.01f;
     float speed = 1.5f;
-    bool left = true;
+    bool left = true; // Двигаемся влево?
 
     void Awake()
     {
@@ -22,7 +23,14 @@ public class LittleSceneScript : MonoBehaviour
 
     public void StartTheShow()
     {
+        leftPanel.color = new Color(1, 1, 1, 1);
+        rightPanel.color = new Color(1, 1, 1, 1);
+
+        leftFinger.transform.localScale = new Vector3(0.3f, 1, 1);
+        rightFinger.transform.localScale = new Vector3(0.3f, 1, 1);
+
         player.transform.position = start;
+        leftFinger.transform.localScale *= .8f;
         StartCoroutine(startMoving());
     }
 
@@ -38,17 +46,29 @@ public class LittleSceneScript : MonoBehaviour
             if ((Vector2)player.transform.position == finish)
             {
                 if (left)
+                { // Возвращем цвет панелек
                     leftPanel.color *= 1.25f;
+                    leftFinger.transform.localScale *= 1.25f;
+                }
                 else
+                {
                     rightPanel.color *= 1.25f;
+                    rightFinger.transform.localScale *= 1.25f;
+                }
 
                 yield return new WaitForSeconds(.8f);
                 finish = new Vector2(-finish.x, finish.y);
 
                 if (left)
+                {
+                    rightFinger.transform.localScale *= .8f;
                     rightPanel.color *= .8f;
+                }
                 else
+                {
+                    leftFinger.transform.localScale *= .8f;
                     leftPanel.color *= .8f;
+                }
                 left = !left;
             }
         }
