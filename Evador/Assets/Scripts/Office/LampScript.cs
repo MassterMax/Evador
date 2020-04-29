@@ -7,6 +7,7 @@ public class LampScript : TriggerHandler
     [SerializeField] GameObject lght;
     [SerializeField] MothScript[] Moths;
     bool triggered = false;
+    float dT = 0;
 
     void Start()
     {
@@ -25,12 +26,13 @@ public class LampScript : TriggerHandler
     {
         if (!triggered)
         {
+            dT = Time.time;
             lght.SetActive(true);
             foreach (MothScript m in Moths)
                 m.canFly = true;
             triggered = true;
         }
-        else
+        else if (dT - Time.time > 1f) // Чтобы нельзя было сразу же выключить свет
         {
             lght.SetActive(false);
             foreach (MothScript m in Moths)

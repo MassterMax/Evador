@@ -3870,6 +3870,8 @@ MonoBehaviour:
   endMenu: {fileID: 877291580}
   No: {fileID: 1482031713}
   Yes: {fileID: 1865511231}
+  leftBut: {fileID: 130396248}
+  rightBut: {fileID: 1043352325}
 --- !u!1 &1575206823
 GameObject:
   m_ObjectHideFlags: 0

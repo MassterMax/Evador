@@ -8,9 +8,10 @@ public class TriggerScript : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer != 8) //not a wall 
+        if (collision.gameObject.layer == 0 && FindObjectOfType<GameManager>().gameHasStarted) //player
         {
-            hnd.Invoke("OnTrigger", 0f);
+            hnd.OnTrigger();
+            //Debug.Log(collision.gameObject.name + " " + Time.time + " " + collision.gameObject.GetComponent<SpriteRenderer>().color);
         }
     }
 }

@@ -12616,7 +12616,7 @@ PrefabInstance:
     - target: {fileID: 5003138013652362933, guid: b6b3f71f4bd6c714bb33b32570968268,
         type: 3}
       propertyPath: m_Name
-      value: Mollusc
+      value: Mollusc0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6b3f71f4bd6c714bb33b32570968268, type: 3}
@@ -12959,7 +12959,7 @@ PrefabInstance:
     - target: {fileID: 8482611031337342040, guid: ea802986cc4b8af449df6cab1b646aa2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 35.43
+      value: 35.361
       objectReference: {fileID: 0}
     - target: {fileID: 8482611031337342040, guid: ea802986cc4b8af449df6cab1b646aa2,
         type: 3}
@@ -13170,7 +13170,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: -0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2125232569

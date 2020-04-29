@@ -23,11 +23,16 @@ public class Mollusc : TriggerHandler
 
         upJaw.transform.localEulerAngles = rotUp;
         lowJaw.transform.localEulerAngles = rotLow;
+
+        //if (gameObject.name == "Mollusc" || gameObject.name == "Mollusc0")
+        //    Debug.Log(gameObject.name + " default " + Time.time + " " + canEat);
     }
 
     public override void OnTrigger()
     {
         canEat = true;
+        //if (gameObject.name == "Mollusc" || gameObject.name == "Mollusc0")
+        //    Debug.Log(gameObject.name + " trigger " + Time.time + " " + canEat);
     }
 
     void Start()

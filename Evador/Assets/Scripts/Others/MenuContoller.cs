@@ -28,6 +28,7 @@ public class MenuContoller : MonoBehaviour
     Image hidingPanelImage, musicIconImage;
 
     [SerializeField] GameObject No, Yes;
+    [SerializeField] Image leftBut, rightBut;
 
     List<Image> shardsIm = new List<Image>();
 
@@ -191,6 +192,14 @@ public class MenuContoller : MonoBehaviour
 
     void SetMenuTextAndColor()
     {
+        leftBut.color = new Color(1, 1, 1, 0.6f);
+        rightBut.color = new Color(1, 1, 1, 0.6f);
+
+        if (SelectedLevel == 1)
+            leftBut.color = new Color(1, 1, 1, 0.25f);
+        if (SelectedLevel == maxLevel + 1 || SelectedLevel == Stats.numOfLevels)
+            rightBut.color = new Color(1, 1, 1, 0.25f);
+
         levelText.text = levels[SelectedLevel - 1];
         locationText.text = locations[(SelectedLevel - 1) / 3];
         levelText.color = colors[(SelectedLevel - 1) / 3];

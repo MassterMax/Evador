@@ -37,7 +37,6 @@ public class PlayerController : MonoBehaviour
 
         if (Input.touchCount > 0) // Управление пальцами.
         {
-            K += dK;
             direction = OnTouch(Input.GetTouch(0));
 
             if (Input.touchCount > 1)
@@ -45,18 +44,20 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)) // Управление мышкой.
         {
-            K += dK;
             if (Input.GetKey(KeyCode.LeftArrow))
                 direction += Vector2.left;
             if (Input.GetKey(KeyCode.RightArrow))
                 direction += Vector2.right;
         }
+
+        direction = direction.normalized;
+
+        if (direction.x != 0)
+            K += dK;
         else
             K = 0.1f;
 
         K = K > 1 ? 1 : K;
-
-        direction = direction.normalized;
 
         transform.Translate((Vector2.up * verticalSpeed + direction * horizontalSpeed * K) * Time.deltaTime);
     }
