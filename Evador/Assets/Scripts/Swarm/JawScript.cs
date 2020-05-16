@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class JawScript : Wall
 {
-    [SerializeField] GameObject head;
+    [SerializeField] GameObject head; // Голова, относительно которой челюсти двигаются
     [SerializeField] float MaxDifference = 15f;
-    float startAngle, minAngle, maxAngle;
+    float startAngle, minAngle, maxAngle; // Начальный угол, углы отклонения
     float currentAngle;
     Vector3 pos;
     Quaternion rot;
     public bool phase = false;
 
-    public override void DefaultSettings() //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+    public override void DefaultSettings()
     {
         transform.position = pos;
         transform.rotation = rot;
@@ -36,12 +36,10 @@ public class JawScript : Wall
 
     void Update()
     {
-        if (moving && !phase)
+        if (moving && !phase) // Пасть дрожит
         {
-            currentAngle = transform.rotation.eulerAngles.z;
+            currentAngle = transform.rotation.eulerAngles.z; // Высчитываем текущий угол
             currentAngle = currentAngle <= 180 ? currentAngle : currentAngle - 360f;
-
-            //Debug.Log(minAngle+ " " + currentAngle + " " + (startAngle + MaxDifference));
 
             if (currentAngle < minAngle)
                 transform.RotateAround(head.transform.position, Vector3.forward, Random.Range(0, 90f) * Time.deltaTime);
@@ -50,7 +48,7 @@ public class JawScript : Wall
             else
                 transform.RotateAround(head.transform.position, Vector3.forward, Random.Range(-90f, 90f) * Time.deltaTime);
         }
-        else if (moving && phase)
+        else if (moving && phase) // Пасть закрывается
         {
             currentAngle = transform.rotation.eulerAngles.z;
             currentAngle = currentAngle <= 180 ? currentAngle : currentAngle - 360f;

@@ -12618,6 +12618,71 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mollusc0
       objectReference: {fileID: 0}
+    - target: {fileID: 5003138014426880244, guid: b6b3f71f4bd6c714bb33b32570968268,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003138014426880244, guid: b6b3f71f4bd6c714bb33b32570968268,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003138014426880244, guid: b6b3f71f4bd6c714bb33b32570968268,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003138014426880244, guid: b6b3f71f4bd6c714bb33b32570968268,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003138014426880244, guid: b6b3f71f4bd6c714bb33b32570968268,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.285
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003138014426880244, guid: b6b3f71f4bd6c714bb33b32570968268,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.657
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003138014511115896, guid: b6b3f71f4bd6c714bb33b32570968268,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003138014511115896, guid: b6b3f71f4bd6c714bb33b32570968268,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003138014511115896, guid: b6b3f71f4bd6c714bb33b32570968268,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003138014511115896, guid: b6b3f71f4bd6c714bb33b32570968268,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003138014511115896, guid: b6b3f71f4bd6c714bb33b32570968268,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003138014511115896, guid: b6b3f71f4bd6c714bb33b32570968268,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003138014511115896, guid: b6b3f71f4bd6c714bb33b32570968268,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6b3f71f4bd6c714bb33b32570968268, type: 3}
 --- !u!4 &1590775026 stripped

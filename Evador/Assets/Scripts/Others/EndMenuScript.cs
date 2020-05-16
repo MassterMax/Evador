@@ -7,11 +7,11 @@ using UnityEngine.UI;
 public class EndMenuScript : MonoBehaviour
 {
     [SerializeField] GameObject Credits;
-    [SerializeField] List<Text> texts;
+    [SerializeField] List<Text> texts; // Список финальных текстов
     float interval = 4f;
     float da;
     int ticks = 100;
-    bool canSkip = false;
+    bool canSkip = false; // Можно ли пропустить титры
 
     void Start()
     {
@@ -22,6 +22,7 @@ public class EndMenuScript : MonoBehaviour
 
     void Update()
     {
+        // Если можно пропускать, то пропускаем
         if (canSkip && (Input.touchCount > 0 || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)))
         {
             FindObjectOfType<AudioManager>().SetStart();
@@ -31,13 +32,19 @@ public class EndMenuScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Начинаем проявлять текст
+    /// </summary>
     public void PlayEnd()
     {
         da = interval / ticks;
-
         StartCoroutine(textFading());
     }
 
+   /// <summary>
+   /// Показываем весь текст, потом прячем
+   /// </summary>
+   /// <returns></returns>
     IEnumerator textFading()
     {
         int count = texts.Count;
@@ -53,12 +60,17 @@ public class EndMenuScript : MonoBehaviour
             StartCoroutine(hiding(texts[i]));
         }
 
-        Credits.SetActive(true);
+        Credits.SetActive(true); // Включаем титры и ждём
 
         yield return new WaitForSeconds(60f);
         canSkip = true;
     }
 
+    /// <summary>
+    /// Проявление текста с шагом da
+    /// </summary>
+    /// <param name="t"> Текст </param>
+    /// <returns></returns>
     IEnumerator fading(Text t)
     {
         while (t.color.a < 1)
@@ -68,6 +80,11 @@ public class EndMenuScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Прячем текст с шагом da
+    /// </summary>
+    /// <param name="t"> Текст </param>
+    /// <returns></returns>
     IEnumerator hiding(Text t)
     {
         while (t.color.a > 0)

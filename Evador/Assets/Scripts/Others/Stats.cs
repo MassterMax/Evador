@@ -16,7 +16,11 @@ public static class Stats
     public static bool[] shards = new bool[6];
     public static bool music = true;
 
-    public static void SaveProgress(int levelToSave)//lvl to save - сколько уровней мы прошли
+    /// <summary>
+    /// Метод для сохранения прогресса
+    /// </summary>
+    /// <param name="levelToSave">сколько уровней мы прошли</param>
+    public static void SaveProgress(int levelToSave)
     {
         try
         {
@@ -41,11 +45,13 @@ public static class Stats
         catch (Exception) { }
     }
 
+    /// <summary>
+    /// Метод для считывания прогресса
+    /// </summary>
     public static void ReadProgress()
     {
         try
         {
-            //Debug.Log(path);
             using (StreamReader sr = new StreamReader(path, Encoding.Unicode))
             {
                 maxLevel = int.Parse(sr.ReadLine());
@@ -59,7 +65,6 @@ public static class Stats
                         shards[i] = true;
                     i++;
                 }
-
                 sr.Close();
             }
         }

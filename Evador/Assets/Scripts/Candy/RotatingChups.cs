@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RotatingChups : Wall
 {
-    [SerializeField] GameObject rotPoint;
+    [SerializeField] GameObject rotPoint; // Точка, вокруг которой вращаем и скорость (в угле вращения альфа)
     [SerializeField] float A;
 
     Vector3 startPos, rotPos;
@@ -23,7 +21,7 @@ public class RotatingChups : Wall
 
     void Update()
     {
-        if (moving)
+        if (moving) // Просто вращаем вокруг заданной точки
         {
             transform.RotateAround(rotPos, Vector3.forward, A * Time.deltaTime);
         }

@@ -51,7 +51,7 @@ public class movingFish : Wall
         sqrLenToStart = (wall.transform.position - stPoint.transform.position).sqrMagnitude;
         sqrLenToFinish = (wall.transform.position - fPoint.transform.position).sqrMagnitude;
 
-        if (lookingToFinish)
+        if (lookingToFinish) // Двигаем, если достигли конца, то меняем напрвавление движения и разворачиваем спрайт
         {
             if (sqrLenToStart < sqrLen)
                 wall.transform.position = Vector3.MoveTowards(wall.transform.position, fPoint.transform.position, speed * Time.deltaTime);

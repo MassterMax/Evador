@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Mollusc : TriggerHandler
 {
@@ -8,7 +6,7 @@ public class Mollusc : TriggerHandler
     [SerializeField] GameObject lowJaw;
     [SerializeField] GameObject rotPoint;
 
-    Vector3 upV, lowV;
+    Vector3 upV, lowV; // ПОложения и углы по умолчанию
     Vector3 rotUp, rotLow;
     Vector3 rotV;
     float angle;
@@ -23,16 +21,11 @@ public class Mollusc : TriggerHandler
 
         upJaw.transform.localEulerAngles = rotUp;
         lowJaw.transform.localEulerAngles = rotLow;
-
-        //if (gameObject.name == "Mollusc" || gameObject.name == "Mollusc0")
-        //    Debug.Log(gameObject.name + " default " + Time.time + " " + canEat);
     }
 
     public override void OnTrigger()
     {
         canEat = true;
-        //if (gameObject.name == "Mollusc" || gameObject.name == "Mollusc0")
-        //    Debug.Log(gameObject.name + " trigger " + Time.time + " " + canEat);
     }
 
     void Start()
@@ -51,7 +44,7 @@ public class Mollusc : TriggerHandler
 
     void Update()
     {
-        if (canEat)
+        if (canEat) // Моллюск закрывает рот, если может есть
         {
             if (angle - lowJaw.transform.localEulerAngles.z > 0.01)
             {

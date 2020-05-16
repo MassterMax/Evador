@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EyeScript : MonoBehaviour
 {
     [SerializeField] GameObject middleCopy, eyeHole;
     [SerializeField] float speed;
-    Vector3 hole;
+    Vector3 hole; // Дырка, относительно которой глаз двигается
 
     private void Start()
     {
@@ -15,7 +13,7 @@ public class EyeScript : MonoBehaviour
 
     void Update()
     {
-        if (Vector2.Distance(middleCopy.transform.position, transform.position) > 2)
+        if (Vector2.Distance(middleCopy.transform.position, transform.position) > 2) // Смотрим именно на центральную копию!
             transform.position = Vector2.MoveTowards(transform.position, middleCopy.transform.position, speed * Time.deltaTime);
 
         if (Vector2.Distance(hole, transform.position) > 0.5)
@@ -25,6 +23,5 @@ public class EyeScript : MonoBehaviour
             pos = pos / 2;
             transform.position = pos + hole;
         }
-
     }
 }

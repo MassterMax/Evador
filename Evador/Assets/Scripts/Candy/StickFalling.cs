@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class StickFalling : Wall
 {
     [SerializeField] float time;
-    [SerializeField] bool clockwise = true;
+    [SerializeField] bool clockwise = true; // Падать по часовой или против?
     public bool fallen = false;
-    float dangle;
+    float dangle; // Дельта угол и финишный угол
     float fangle;
     Vector3 pos;
 
@@ -34,7 +32,7 @@ public class StickFalling : Wall
 
     void Update()
     {
-        if (!fallen)
+        if (!fallen) // Если ещё не упал, то пусть падает
         {
             transform.RotateAround(transform.parent.position, Vector3.forward, dangle * Time.deltaTime);
 

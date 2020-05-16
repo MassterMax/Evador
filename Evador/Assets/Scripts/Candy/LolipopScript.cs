@@ -1,14 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class FlyingRed : Wall
+public class LolipopScript : Wall
 {
     [SerializeField] float rotationSpeed;
-    [SerializeField] float realizationTime;
-    [SerializeField] float maxScale;
+    [SerializeField] float realizationTime; // Время полного роста
+    [SerializeField] float maxScale; // Максимальный размер
     [SerializeField] Vector3 startScale;
-    bool grow = true;
+    bool grow = true; // Статус (растет/уменьшается)
 
     public override void DefaultSettings()
     {
@@ -26,9 +24,10 @@ public class FlyingRed : Wall
     {
         if (moving)
         {
+            // Крутим, если можно
             transform.Rotate(new Vector3(0, 0, rotationSpeed * Time.deltaTime));
 
-            if (grow)
+            if (grow)  // Увеличиваем/уменьшаем объект в зависимости от стадии
             {
                 transform.localScale += new Vector3(maxScale / realizationTime, maxScale / realizationTime, 0) * Time.deltaTime;
 

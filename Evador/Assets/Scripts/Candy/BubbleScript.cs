@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BubbleScript : Wall
 {
-    [SerializeField] float dR;
+    [SerializeField] float dR; // Изменение радиуса в секунду
     Vector3 StartPos;
 
     public override void DefaultSettings()
@@ -22,7 +20,7 @@ public class BubbleScript : Wall
 
     void Update()
     {
-        if (moving)
+        if (moving) // Скрипт роста
         {
             transform.Translate(-dR * Time.deltaTime, 0, 0);
             transform.localScale += new Vector3(dR * Time.deltaTime, dR * Time.deltaTime, 0);

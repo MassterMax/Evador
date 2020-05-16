@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MothScript : MonoBehaviour
 {
@@ -8,7 +6,7 @@ public class MothScript : MonoBehaviour
     public bool canFly = false;
 
     Vector2 startPos;
-    const float border = 2.5f;
+    const float border = 2.5f; // Границы для полета
 
     public void DefaultSettings()
     {
@@ -23,7 +21,7 @@ public class MothScript : MonoBehaviour
 
     void Update()
     {
-        if (canFly)
+        if (canFly) // Летим, если можем летать
         {
             transform.Translate(new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)) * speed * Time.deltaTime);
             if (transform.position.x < -border || transform.position.x > border)

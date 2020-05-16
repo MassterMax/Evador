@@ -6,6 +6,9 @@ public class GameMenuController : MonoBehaviour
 {
     [SerializeField] GameObject pauseButton, continueButton, homeButton, panel;
 
+    /// <summary>
+    /// При нажатии на паузу
+    /// </summary>
     public void OnPauseButton()
     {
         Time.timeScale = 0f;
@@ -15,6 +18,9 @@ public class GameMenuController : MonoBehaviour
         panel.SetActive(true);
     }
 
+    /// <summary>
+    /// При возобновлении игры
+    /// </summary>
     public void OnContinueButton()
     {
         Time.timeScale = 1f;
@@ -24,14 +30,19 @@ public class GameMenuController : MonoBehaviour
         panel.SetActive(false);
     }
 
+    /// <summary>
+    /// При нажатии на кнопку домой
+    /// </summary>
     public void OnHomeButton()
     {
         Time.timeScale = 1f;
-        //Debug.Log("WOW");
         Stats.running = false;
         SceneManager.LoadScene(0);
     }
 
+    /// <summary>
+    /// Метод для прятания всех компонент меню
+    /// </summary>
     public void HideAll()
     {
         pauseButton.SetActive(false);
@@ -57,6 +68,10 @@ public class GameMenuController : MonoBehaviour
         panel.SetActive(false);
     }
 
+    /// <summary>
+    /// В случае выхода из приложения ставим паузу автоматом
+    /// </summary>
+    /// <param name="pause"> Игра на паузе?</param>
     void OnApplicationPause(bool pause)
     {
         if (pause)

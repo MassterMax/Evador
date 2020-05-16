@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LampScript : TriggerHandler
 {
@@ -16,15 +14,15 @@ public class LampScript : TriggerHandler
 
     public override void DefaultSettings()
     {
-        foreach (MothScript m in Moths)
-            m.Invoke("DefaultSettings", 0f);
+        foreach (MothScript m in Moths) // Успокаиваем кажду мушку
+            m.DefaultSettings();
         lght.SetActive(false);
         triggered = false;
     }
 
     public override void OnTrigger()
     {
-        if (!triggered)
+        if (!triggered) // Если нажали первый раз, то включаем свет
         {
             dT = Time.time;
             lght.SetActive(true);

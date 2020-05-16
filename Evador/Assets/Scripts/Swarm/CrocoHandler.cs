@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CrocoHandler : TriggerHandler
 {
-    [SerializeField] JawScript jaw1, jaw2;
+    [SerializeField] JawScript jaw1, jaw2; // Челюсти, с которыми мы делаем все операции
 
     public override void DefaultSettings()
     {

@@ -2,7 +2,6 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
-using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -38,8 +37,6 @@ public class MenuContoller : MonoBehaviour
     string[] locations = { "abstract space", "candy land", "deep swamp", "my office" };
     Color32[] colors = { Color.white, new Color32(255, 134, 149, 255), new Color32(32, 106, 73, 255), new Color32(228, 200, 100, 255) };
 
-
-
     bool hexPressed = false;
     int maxLevel;
     int selectedLevel = 1;
@@ -58,18 +55,27 @@ public class MenuContoller : MonoBehaviour
         Application.Quit();
     }
 
+    /// <summary>
+    /// При нажатии на кнопку уменьшения уровня
+    /// </summary>
     public void OnLeftButton()
     {
         SelectedLevel--;
         SetMenuTextAndColor();
     }
 
+    /// <summary>
+    /// При нажатии на кнопку увеличения уровня
+    /// </summary>
     public void OnRightButton()
     {
         SelectedLevel++;
         SetMenuTextAndColor();
     }
 
+    /// <summary>
+    /// При нажатии на кнопку PLAY
+    /// </summary>
     public void OnPlayButton()
     {
         FindObjectOfType<DummyPlayerContoller>().canMove = true;
@@ -81,23 +87,35 @@ public class MenuContoller : MonoBehaviour
         StopCoroutine("ImageFading");
     }
 
+    /// <summary>
+    /// При нажатии на кнопку настроек
+    /// </summary>
     public void OnSettingsButton()
     {
         settingsMenu.SetActive(true);
     }
 
+    /// <summary>
+    /// При нажатии на кнопку назад
+    /// </summary>
     public void OnBackButton()
     {
         OnNotResetButton();
         settingsMenu.SetActive(false);
     }
 
+    /// <summary>
+    /// При нажатии на кнопку обучения
+    /// </summary>
     public void OnQuestionButton()
     {
         tutorialCanvas.SetActive(true);
         FindObjectOfType<TutorialScripts>().PlayTutorial();
     }
 
+    /// <summary>
+    /// При включении выключении звука
+    /// </summary>
     public void OnMusicButton()
     {
         Stats.music = !Stats.music;
@@ -105,6 +123,9 @@ public class MenuContoller : MonoBehaviour
         SetMusic();
     }
 
+    /// <summary>
+    /// При нажатии на сброс настроек
+    /// </summary>
     public void OnResetButton()
     {
         if (File.Exists(Stats.path))
@@ -112,18 +133,27 @@ public class MenuContoller : MonoBehaviour
         Application.Quit();
     }
 
+    /// <summary>
+    /// Если игрок не решается сбросить настройки
+    /// </summary>
     public void OnNotResetButton()
     {
         No.SetActive(false);
         Yes.SetActive(false);
     }
 
+    /// <summary>
+    /// При нажатии на CLEAR DATA
+    /// </summary>
     public void OnPreResetButton()
     {
         No.SetActive(!No.activeSelf);
         Yes.SetActive(!Yes.activeSelf);
     }
 
+    /// <summary>
+    /// При нажатии на кнопку-шестиугольник
+    /// </summary>
     public void OnHexagon()
     {
         if (Stats.numOfShards == 6 && !hexPressed)
@@ -142,6 +172,9 @@ public class MenuContoller : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Загрузка выбранного уровня
+    /// </summary>
     void LevelLoad()
     {
         SceneManager.LoadScene(SelectedLevel);
@@ -156,7 +189,7 @@ public class MenuContoller : MonoBehaviour
 
     void Start()
     {
-        if (Screen.height != Screen.safeArea.height)
+        if (Screen.height != Screen.safeArea.height) // Настройки по смещению UI
         {
             Vector3 delta = questionButton.transform.position - settingsButton.transform.position;
             settingsButton.transform.position = backButton.transform.position = questionButton.transform.position;
@@ -181,6 +214,11 @@ public class MenuContoller : MonoBehaviour
         SetMenuTextAndColor();
     }
 
+    /// <summary>
+    /// Метод для плавного включения картинки
+    /// </summary>
+    /// <param name="im"></param>
+    /// <returns></returns>
     IEnumerator ImageFading(Image im)
     {
         while (im.color.a < 1)
@@ -190,6 +228,9 @@ public class MenuContoller : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Метод для визуализации выбранного уровня
+    /// </summary>
     void SetMenuTextAndColor()
     {
         leftBut.color = new Color(1, 1, 1, 0.6f);
@@ -207,12 +248,18 @@ public class MenuContoller : MonoBehaviour
         levelBox.color = colors[(SelectedLevel - 1) / 3];
     }
 
+    /// <summary>
+    /// Метод для установки текста настроек
+    /// </summary>
     void SetSettingsText()
     {
-        settingsText.text = $"Thanks for your testing ^.^!\r\nLevels completed: {maxLevel}\r\nNumber of deaths: {Stats.numOfDeaths}\r\n" +
+        settingsText.text = $"Evador v{Application.version}\r\nLevels completed: {maxLevel}\r\nNumber of deaths: {Stats.numOfDeaths}\r\n" +
             $"Shards collected: {Stats.numOfShards}";
     }
 
+    /// <summary>
+    /// Метод при изменении музыки
+    /// </summary>
     void SetMusic()
     {
         if (Stats.music)
@@ -225,6 +272,9 @@ public class MenuContoller : MonoBehaviour
         AM.Mute(!Stats.music);
     }
 
+    /// <summary>
+    /// Метод для визуализации собранных осколков
+    /// </summary>
     void SetShards()
     {
         int i = 0;
@@ -238,10 +288,14 @@ public class MenuContoller : MonoBehaviour
             }
             i++;
         }
-        //Debug.Log(count);
+
         Stats.numOfShards = count;
     }
 
+    /// <summary>
+    /// Метод для вращения шестиугольника в случае прохождения игры
+    /// </summary>
+    /// <returns></returns>
     IEnumerator hexRounding()
     {
         float time = 0f;
@@ -259,7 +313,7 @@ public class MenuContoller : MonoBehaviour
             {
                 foreach (Image s in shardsIm)
                     ColorFading(s);
-                //Debug.Log("iteration");
+
                 timer2 -= 0.2f;
             }
 
@@ -272,6 +326,11 @@ public class MenuContoller : MonoBehaviour
         FindObjectOfType<EndMenuScript>().PlayEnd();
     }
 
+    /// <summary>
+    /// Некоторая зависимость, нужная для разной скорости вращения шестиугольника
+    /// </summary>
+    /// <param name="x"></param>
+    /// <returns></returns>
     float F(float x)
     {
         if (x < 0 || x > 8)
@@ -284,10 +343,12 @@ public class MenuContoller : MonoBehaviour
         return output;
     }
 
+    /// <summary>
+    /// Небольшое затухание картинки
+    /// </summary>
+    /// <param name="i"> Выбранная картинка</param>
     void ColorFading(Image i)
     {
-        //Debug.Log(i.color);
         i.color += new Color(0.03f, 0.03f, 0.03f);
-
     }
 }

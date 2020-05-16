@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-abstract public class TriggerHandler : Wall
+﻿abstract public class TriggerHandler : Wall
 {
+    /// <summary>
+    /// Метод, который вызывается при активации Trigger
+    /// </summary>
     abstract public void OnTrigger();
 }

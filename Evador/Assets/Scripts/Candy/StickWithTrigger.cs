@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class StickWithTrigger : TriggerHandler
 {
@@ -8,7 +6,7 @@ public class StickWithTrigger : TriggerHandler
 
     public override void DefaultSettings()
     {
-        stick.Invoke("DefaultSettings", 0f);
+        stick.DefaultSettings();
     }
 
     public override void OnTrigger()

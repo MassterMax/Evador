@@ -17,10 +17,11 @@ public class LittleSceneScript : MonoBehaviour
     {
         start = player.transform.position;
         finish = new Vector2(-start.x, start.y);
-        //Debug.Log("!");
-        //StartTheShow();
     }
 
+    /// <summary>
+    /// Метод, который запускает анимацию в маленьком окошке обучения
+    /// </summary>
     public void StartTheShow()
     {
         leftPanel.color = new Color(1, 1, 1, 1);
@@ -34,6 +35,10 @@ public class LittleSceneScript : MonoBehaviour
         StartCoroutine(startMoving());
     }
 
+    /// <summary>
+    /// Метод начинает периодическое движение в обучении
+    /// </summary>
+    /// <returns></returns>
     IEnumerator startMoving()
     {
         leftPanel.color *= 0.8f;
@@ -73,6 +78,4 @@ public class LittleSceneScript : MonoBehaviour
             }
         }
     }
-
-
 }

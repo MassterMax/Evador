@@ -23,19 +23,15 @@ public class EvadorScript : TriggerHandler
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public override void OnTrigger()
+    public override void OnTrigger() // Здесь мы делаем чуть больше - меняем батарейку и телепортируем игрока
     {
         shouldReset = false;
         count++;
 
         if (count < 3)
             FindObjectOfType<GameManager>().Teleport();
+        else
+            shouldReset = true;
 
         for (int i = 0; i < 3; ++i)
         {
@@ -50,7 +46,7 @@ public class EvadorScript : TriggerHandler
         }
     }
 
-    public override void DefaultSettings()
+    public override void DefaultSettings() // Здесь тоже чуть сложнее, сбрасываем только если должны
     {
         if (shouldReset)
         {

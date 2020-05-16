@@ -6,21 +6,13 @@ public class Bottle : MonoBehaviour
 {
     [SerializeField] float ampl;
     [SerializeField] float maxDegree;
-    int m = -1;
+    int m = -1; // Отвечает, в какую сторону вращать
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        //m *= -1;
-
         transform.Rotate(Vector3.forward * m * Random.Range(0, ampl) * Time.deltaTime);
 
+        // Если перешли границу вращения, то возвращаем к границе и начинаем в другую сторону
         if (transform.eulerAngles.z > maxDegree && transform.eulerAngles.z < 180)
         {
             transform.eulerAngles = new Vector3(0, 0, maxDegree);
@@ -31,7 +23,5 @@ public class Bottle : MonoBehaviour
             transform.eulerAngles = new Vector3(0, 0, 360f - maxDegree);
             m *= -1;
         }
-
-        //Debug.Log(transform.eulerAngles.z);
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Mouse : TriggerHandler
 {
-    [SerializeField] GameObject coursor;
+    [SerializeField] GameObject coursor; // Сам курсор, который мы двигаем
     [SerializeField] GameObject trigger;
     [SerializeField] float speed;
     Vector3 startPos;
@@ -30,17 +30,12 @@ public class Mouse : TriggerHandler
 
     void Update()
     {
-        if (moving1)
+        if (moving1) // Если можно двигать, то двигаемся к тригеру
         {
             coursor.transform.position = Vector3.MoveTowards(coursor.transform.position, trigger.transform.position, speed * Time.deltaTime);
 
             if (Finished(coursor.transform.position, trigger.transform.position))
                 moving1 = false;
         }
-    }
-
-    bool Finished(Vector3 p1, Vector3 p2)
-    {
-        return Vector3.Distance(p1, p2) < 0.01f;
     }
 }

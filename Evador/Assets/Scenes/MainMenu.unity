@@ -502,8 +502,9 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "Evador\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCreative team:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nProgramming
     team:\n\n\n\n\n\n\n\n\n\n\n\nMusic:\n\nBroke For Free - Calm The F*ck Down\nLonely
-    Punk - Left The Building\n\n\n\n\n\n\nThe guy who helped me a lot:\n\nDanil Kazantsev\n\n\n\n\n\n\nSpecial
-    thanks to the people who\n helped me with testing\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAnd
+    Punk - Left The Building\n\n\n\n\n\n\nThe guy who helped me a lot:\n\nDanil Kazantsev\n\nThe
+    first guy who has completed this game:\n\nAnton Buslaev\n\nSpecial thanks to the
+    people who\n helped me with testing\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAnd
     thank you!"
 --- !u!222 &148908303
 CanvasRenderer:

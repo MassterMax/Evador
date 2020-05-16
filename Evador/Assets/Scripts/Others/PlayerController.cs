@@ -56,12 +56,16 @@ public class PlayerController : MonoBehaviour
             K += dK;
         else
             K = 0.1f;
-
         K = K > 1 ? 1 : K;
 
         transform.Translate((Vector2.up * verticalSpeed + direction * horizontalSpeed * K) * Time.deltaTime);
     }
 
+    /// <summary>
+    /// Метод, который преобразовывает касание в вектор движения
+    /// </summary>
+    /// <param name="t"> Касание на экране</param>
+    /// <returns> Вектор, на который надо переместиться</returns>
     Vector2 OnTouch(Touch t)
     {
         if (TouchInDeadArea(t))
@@ -74,6 +78,9 @@ public class PlayerController : MonoBehaviour
             return Vector2.right;
     }
 
+    /// <summary>
+    /// Метод, который телепортирует копии в правильные места
+    /// </summary>
     void TeleportCopies()
     {
         leftCopy.transform.position = (Vector2)transform.position - 2 * deltaX;
@@ -86,12 +93,18 @@ public class PlayerController : MonoBehaviour
         return (Camera.main.ScreenToWorldPoint(t.position) - middleCopy.transform.position - new Vector3(0, 3, 0)).y >= deadY;
     }
 
+    /// <summary>
+    /// Сброс скоростей игрока
+    /// </summary>
     public void ResetSpeed()
     {
         verticalSpeed = 0f;
         horizontalSpeed = 0f;
     }
 
+    /// <summary>
+    /// Возвращение к нормальным настройкам
+    /// </summary>
     public void DefaultParams()
     {
         leftCopy.GetComponent<SpriteRenderer>().color = Color.white;

@@ -5,15 +5,14 @@ using UnityEngine;
 public class BadLamp : TriggerHandler
 {
     [SerializeField] GameObject badLight;
-    [SerializeField] bool isAct;
-    [SerializeField] GameObject littleButton;
-    [SerializeField] float size;
+    [SerializeField] bool isAct; // Включен ли свет изначально
+    [SerializeField] GameObject littleButton; // Кнопочка, которая прячется при нажатии
 
     [SerializeField] GameObject finishOb;
     Vector3 finishPos;
     Vector3 startPos;
 
-    bool moving1 = false;
+    bool moving1 = false; // Вспомогательная переменная
     float speed = 1f;
 
     public override void DefaultSettings()
@@ -45,10 +44,5 @@ public class BadLamp : TriggerHandler
             if (Finished(littleButton.transform.position, finishPos))
                 moving1 = false;
         }
-    }
-
-    bool Finished(Vector3 p1, Vector3 p2)
-    {
-        return Vector3.Distance(p1, p2) < 0.01f;
     }
 }

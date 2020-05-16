@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Pencil : TriggerHandler
 {
-    [SerializeField] [Range(0f, 1f)] float finishPoint;
+    [SerializeField] [Range(0f, 1f)] float finishPoint; // На какой части пути надо остановиться
     [SerializeField] GameObject pencil;
     [SerializeField] float speed;
     Vector3 startPos, finishPos;
@@ -37,10 +35,5 @@ public class Pencil : TriggerHandler
             if (Finished(pencil.transform.position, finishPos))
                 moving1 = false;
         }
-    }
-
-    bool Finished(Vector3 p1, Vector3 p2)
-    {
-        return Vector3.Distance(p1, p2) < 0.01f;
     }
 }

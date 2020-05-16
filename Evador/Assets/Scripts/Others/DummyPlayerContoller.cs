@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Класс некой болванки, которая двигается при нажатии на кнопку старт
+/// </summary>
 public class DummyPlayerContoller : MonoBehaviour
 {
     [SerializeField] float speed = 3f;

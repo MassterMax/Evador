@@ -13,10 +13,13 @@ public class TutorialScripts : MonoBehaviour
     float da;
     int ticks = 100;
 
+    /// <summary>
+    /// Метод запускает обучение
+    /// </summary>
     public void PlayTutorial()
     {
         scene.SetActive(false);
-        //canvas.SetActive(false);
+
         button.SetActive(false);
         foreach (Text t in texts)
             t.color = new Color();
@@ -26,6 +29,10 @@ public class TutorialScripts : MonoBehaviour
         StartCoroutine(textFading());
     }
 
+    /// <summary>
+    /// Показывает текст вступления
+    /// </summary>
+    /// <returns></returns>
     IEnumerator textFading()
     {
         int count = texts.Count;
@@ -35,11 +42,14 @@ public class TutorialScripts : MonoBehaviour
             StartCoroutine(fading(texts[i]));
             yield return new WaitForSeconds(interval);
         }
-
-        //StopAllCoroutines();
         StartCoroutine(showTutAndBut());
     }
 
+    /// <summary>
+    /// Метод для плавного появления текста
+    /// </summary>
+    /// <param name="t"></param>
+    /// <returns></returns>
     IEnumerator fading(Text t)
     {
         while (t.color.r < 1)
@@ -49,15 +59,19 @@ public class TutorialScripts : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Включает маленькую сцену, активирует ее, а потом появляется кнопка GOT IT!
+    /// </summary>
+    /// <returns></returns>
     IEnumerator showTutAndBut()
     {
         scene.SetActive(true);
-        //Debug.Log("HERE");
         FindObjectOfType<LittleSceneScript>().StartTheShow();
         yield return new WaitForSeconds(5);
         button.SetActive(true);
     }
 
+    // При нажатии на кнопку 
     public void GotIt()
     {
         scene.SetActive(false);

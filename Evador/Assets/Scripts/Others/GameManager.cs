@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
     public float width, height;
     public bool gameHasStarted = false;
 
+    /// <summary>
+    /// Метод, который вызывается при смерти
+    /// </summary>
     public void GameOver()
     {
         gameHasStarted = false;
@@ -42,12 +45,18 @@ public class GameManager : MonoBehaviour
         Stats.SaveProgress(Stats.maxLevel);
     }
 
+    /// <summary>
+    /// Телепортация игрока в стартовую позицию
+    /// </summary>
     public void Teleport()
     {
         player.transform.position = new Vector2(0, -3);
         FindObjectOfType<WallsContainer>().DoDefaultSettings();
     }
 
+    /// <summary>
+    /// При завершении уровня
+    /// </summary>
     public void LevelComplete()
     {
         if (Stats.currentLevel == Stats.maxLevel + 1 && Stats.maxLevel <= Stats.numOfLevels)
@@ -69,22 +78,19 @@ public class GameManager : MonoBehaviour
 
         if (h < w) { Application.Quit(); }
 
-
-        float orthoSize = finishSR.bounds.size.x * h / w * 0.5f;
-        //Debug.Log(orthoSize + " " + Camera.main.orthographicSize);
+        float orthoSize = finishSR.bounds.size.x * h / w * 0.5f; // Магические вычисления по приведению камеры к нужному состоянию + ресайз кнопки play
         float k = Camera.main.orthographicSize / orthoSize;
         Camera.main.orthographicSize = orthoSize;
         if (playBUTTON != null)
             playBUTTON.transform.localScale *= k;
 
 
-        if (homeButton != null)
+        if (homeButton != null) // Определение мертвой зоны (чтобы при нажатии на кнопку паузы игрок не перемещался)
         {
             deadY = (homeButton.transform.position.y + pauseButton.transform.position.y) / 2;
-            //Debug.Log(deadY);
         }
 
-        if (!Stats.running)
+        if (!Stats.running) // Запускаем игру и читаем прогресс
         {
             Stats.running = true;
             Stats.ReadProgress();
@@ -105,14 +111,16 @@ public class GameManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Телепортируем игрока на старт и перезапускаем уровень
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Restart()
     {
         yield return new WaitForSeconds(2f);
 
         player.transform.position = new Vector2(0, -3);
         WhiteBG.SetActive(false);
-
-        //yield return new WaitForSeconds(1f);
 
         FindObjectOfType<PlayerController>().DefaultParams();
         FindObjectOfType<WallsContainer>().LaunchWalls();
@@ -121,6 +129,10 @@ public class GameManager : MonoBehaviour
         gameHasStarted = true;
     }
 
+    /// <summary>
+    /// В случае завершения уровня запускаем это
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Wait()
     {
         FindObjectOfType<GameMenuController>().HideAll();
@@ -131,7 +143,7 @@ public class GameManager : MonoBehaviour
 
         SecondHomeButton.SetActive(true);
 
-        while (true) // таймер для текста
+        while (true) // Таймер для текста
         {
             lvlCompleteText.color = Color.white;
             yield return new WaitForSecondsRealtime(.5f);
@@ -139,6 +151,4 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSecondsRealtime(.5f);
         }
     }
-
-
 }

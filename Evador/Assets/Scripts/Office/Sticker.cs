@@ -11,7 +11,7 @@ public class Sticker : TriggerHandler
     [SerializeField] float ampl;
     Vector3 startPos;
     bool moving1;
-    float m = -1;
+    float m = -1; // Определяет, в какую сторону качаться
 
     public override void DefaultSettings()
     {
@@ -33,16 +33,14 @@ public class Sticker : TriggerHandler
 
     void Update()
     {
-        if (moving1)
+        if (moving1) // Если можно двигаться, то двигаемся
         {
             stck.transform.position = Vector3.MoveTowards(stck.transform.position, trigger.transform.position, speed * Time.deltaTime);
 
             if (Finished(stck.transform.position, trigger.transform.position))
                 moving1 = false;
 
-
-
-            transform.Rotate(Vector3.forward * m * Random.Range(0, ampl) * Time.deltaTime);
+            transform.Rotate(Vector3.forward * m * Random.Range(0, ampl) * Time.deltaTime); // Поворачиваемся
 
             if (transform.eulerAngles.z > maxDegree && transform.eulerAngles.z < 180)
             {
@@ -55,10 +53,5 @@ public class Sticker : TriggerHandler
                 m *= -1;
             }
         }
-    }
-
-    bool Finished(Vector3 p1, Vector3 p2)
-    {
-        return Vector3.Distance(p1, p2) < 0.01f;
     }
 }

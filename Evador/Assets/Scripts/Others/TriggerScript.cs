@@ -1,17 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TriggerScript : MonoBehaviour
 {
-    [SerializeField] TriggerHandler hnd;
+    [SerializeField] TriggerHandler hnd; // Обработчик триггера
 
+    /// <summary>
+    /// В случае коллизии проверяем коллизию с игроком и тот факт, что игра началась (последнее нужно, чтобы не активировать триггер после смерти)
+    /// </summary>
+    /// <param name="collision"> Объект, с которым происходит столкновение</param>
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == 0 && FindObjectOfType<GameManager>().gameHasStarted) //player
         {
             hnd.OnTrigger();
-            //Debug.Log(collision.gameObject.name + " " + Time.time + " " + collision.gameObject.GetComponent<SpriteRenderer>().color);
         }
     }
 }
