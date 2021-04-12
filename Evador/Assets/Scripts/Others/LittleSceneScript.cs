@@ -24,13 +24,18 @@ public class LittleSceneScript : MonoBehaviour
     /// </summary>
     public void StartTheShow()
     {
+        left = true;
         leftPanel.color = new Color(1, 1, 1, 1);
         rightPanel.color = new Color(1, 1, 1, 1);
 
+        //Debug.Log(leftFinger.transform.localScale + " " + rightFinger.transform.localScale);
         leftFinger.transform.localScale = new Vector3(0.3f, 1, 1);
         rightFinger.transform.localScale = new Vector3(0.3f, 1, 1);
+        //Debug.Log("after scaling " + leftFinger.transform.localScale + " " + rightFinger.transform.localScale);
+        //Debug.Log(left);
 
         player.transform.position = start;
+        finish = new Vector2(-start.x, start.y);
         leftFinger.transform.localScale *= .8f;
         StartCoroutine(startMoving());
     }
@@ -41,15 +46,17 @@ public class LittleSceneScript : MonoBehaviour
     /// <returns></returns>
     IEnumerator startMoving()
     {
+        //Debug.Log("cor");
         leftPanel.color *= 0.8f;
         while (true)
         {
-            //Debug.Log(finish + " " + player.transform.position);
             yield return new WaitForSeconds(dtime);
             player.transform.position = Vector3.MoveTowards(player.transform.position, finish, speed * dtime);
+            //Debug.Log(finish + " " + player.transform.position);
 
             if ((Vector2)player.transform.position == finish)
             {
+                //Debug.Log(left);
                 if (left)
                 { // Возвращем цвет панелек
                     leftPanel.color *= 1.25f;

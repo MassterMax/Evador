@@ -8,9 +8,9 @@ public class Shard : MonoBehaviour
     {
         if (collision.gameObject.layer == 0)  // Если коснулись с default (то есть с игроком)
         {
-            gameObject.SetActive(false);
             FindObjectOfType<GameManager>().shardCollected = true;
             FindObjectOfType<GameManager>().shardNumber = num;
+            gameObject.SetActive(false);
         }
     }
 

@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 6485d44ced79400b8076161e6e7aa17f
+labels:
+- gvh
+- gvh_version-1.2.155
+- gvhp_exportpath-ExternalDependencyManager/Editor/Google.IOSResolver_v1.2.155.dll
+- gvhp_targets-editor
+timeCreated: 1480838400
+PluginImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  iconMap: {}
+  executionOrder: {}
+  isPreloaded: 0
+  isOverridable: 0
+  platformData:
+    Editor:
+      enabled: 1
+  userData:
+  assetBundleName:
+  assetBundleVariant:

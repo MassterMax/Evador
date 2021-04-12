@@ -29,12 +29,15 @@ public class MenuContoller : MonoBehaviour
     [SerializeField] GameObject No, Yes;
     [SerializeField] Image leftBut, rightBut;
 
+    [SerializeField] Text adsRemover;
+
     List<Image> shardsIm = new List<Image>();
 
     AudioManager AM;
 
-    string[] levels = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII" };
-    string[] locations = { "abstract space", "candy land", "deep swamp", "my office" };
+    [SerializeField] GameObject langCanvas;
+
+    string[] levels = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI" };
     Color32[] colors = { Color.white, new Color32(255, 134, 149, 255), new Color32(32, 106, 73, 255), new Color32(228, 200, 100, 255) };
 
     bool hexPressed = false;
@@ -49,6 +52,10 @@ public class MenuContoller : MonoBehaviour
                 selectedLevel = value;
         }
     }
+
+    const int levelsInArea = 4;
+
+    bool shouldPlayTutorial = false;
 
     public void OnCloseButton()
     {
@@ -109,6 +116,7 @@ public class MenuContoller : MonoBehaviour
     /// </summary>
     public void OnQuestionButton()
     {
+        shouldPlayTutorial = false;
         tutorialCanvas.SetActive(true);
         FindObjectOfType<TutorialScripts>().PlayTutorial();
     }
@@ -172,6 +180,53 @@ public class MenuContoller : MonoBehaviour
         }
     }
 
+    public void OnAdRemove()
+    {
+        if (Stats.AdsRemoved)
+            adsRemover.text = GetComponent<TextManager>().RemovedAdText();
+    }
+
+    public void OnChangeLanguage()
+    {
+        langCanvas.SetActive(true);
+    }
+
+    public void OnUSALanguage()
+    {
+        Stats.lng = "eng";
+        Stats.SaveProgress(Stats.maxLevel);
+        langCanvas.SetActive(false);
+
+        AfterLanguageChanged();
+    }
+
+    public void OnRussianLanguage()
+    {
+        Stats.lng = "rus";
+        Stats.SaveProgress(Stats.maxLevel);
+        langCanvas.SetActive(false);
+
+        AfterLanguageChanged();
+    }
+
+    void AfterLanguageChanged()
+    {
+        GetComponent<TextManager>().SetMenuText();
+
+        switch (Stats.lng)
+        {
+            case "rus":
+                locationText.text = TextManager.locations_rus[(SelectedLevel - 1) / levelsInArea];
+                break;
+            default:
+                locationText.text = TextManager.locations_eng[(SelectedLevel - 1) / levelsInArea];
+                break;
+        }
+
+        if (shouldPlayTutorial)
+            OnQuestionButton();
+    }
+
     /// <summary>
     /// Загрузка выбранного уровня
     /// </summary>
@@ -182,13 +237,25 @@ public class MenuContoller : MonoBehaviour
 
     void Awake()
     {
+        Stats.path = Application.persistentDataPath + "/.data";
+        Stats.version = Application.version;
+
+        Debug.Log(Stats.path);
+
         tutorialCanvas.SetActive(false);
+        langCanvas.SetActive(false);
+
         if (!File.Exists(Stats.path))
-            OnQuestionButton();
+        {
+            shouldPlayTutorial = true;
+            OnChangeLanguage();
+        }
     }
 
     void Start()
     {
+        GetComponent<TextManager>().SetMenuText();
+
         if (Screen.height != Screen.safeArea.height) // Настройки по смещению UI
         {
             Vector3 delta = questionButton.transform.position - settingsButton.transform.position;
@@ -212,6 +279,8 @@ public class MenuContoller : MonoBehaviour
         SetMusic();
         SetSettingsText();
         SetMenuTextAndColor();
+
+        OnAdRemove();
     }
 
     /// <summary>
@@ -242,10 +311,21 @@ public class MenuContoller : MonoBehaviour
             rightBut.color = new Color(1, 1, 1, 0.25f);
 
         levelText.text = levels[SelectedLevel - 1];
-        locationText.text = locations[(SelectedLevel - 1) / 3];
-        levelText.color = colors[(SelectedLevel - 1) / 3];
-        locationText.color = colors[(SelectedLevel - 1) / 3];
-        levelBox.color = colors[(SelectedLevel - 1) / 3];
+
+        switch (Stats.lng)
+        {
+            case "rus":
+                locationText.text = TextManager.locations_rus[(SelectedLevel - 1) / levelsInArea];
+                break;
+            default:
+                locationText.text = TextManager.locations_eng[(SelectedLevel - 1) / levelsInArea];
+                break;
+        }
+
+
+        levelText.color = colors[(SelectedLevel - 1) / levelsInArea];
+        locationText.color = colors[(SelectedLevel - 1) / levelsInArea];
+        levelBox.color = colors[(SelectedLevel - 1) / levelsInArea];
     }
 
     /// <summary>
@@ -253,8 +333,7 @@ public class MenuContoller : MonoBehaviour
     /// </summary>
     void SetSettingsText()
     {
-        settingsText.text = $"Evador v{Application.version}\r\nLevels completed: {maxLevel}\r\nNumber of deaths: {Stats.numOfDeaths}\r\n" +
-            $"Shards collected: {Stats.numOfShards}";
+        GetComponent<TextManager>().SetSettingsText();
     }
 
     /// <summary>

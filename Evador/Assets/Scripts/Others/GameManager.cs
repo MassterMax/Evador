@@ -2,6 +2,8 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
+using GoogleMobileAds.Api;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +17,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject playBUTTON;
 
+    [SerializeField] GameObject NextLevelButton;
+
     public int shardNumber;
     public bool shardCollected;
 
@@ -23,6 +27,10 @@ public class GameManager : MonoBehaviour
     public Vector2 deltaPos;
     public float width, height;
     public bool gameHasStarted = false;
+
+    const string appID = "ca-app-pub-7272958162561065~3900634957";
+    const string gameOverAD = "ca-app-pub-7272958162561065/5808064252";
+    InterstitialAd interstitial;
 
     /// <summary>
     /// Метод, который вызывается при смерти
@@ -73,6 +81,9 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        CreateAd();
+        LoadAd();
+
         float h = Screen.height;
         float w = Screen.width;
 
@@ -97,7 +108,7 @@ public class GameManager : MonoBehaviour
         }
 
         width = Camera.main.pixelWidth;
-       
+
         height = Camera.main.pixelHeight;
         deltaPos = Camera.main.ScreenToWorldPoint(new Vector2(width, height));
 
@@ -106,6 +117,8 @@ public class GameManager : MonoBehaviour
         if (SecondHomeButton != null)
         {
             SecondHomeButton.SetActive(false);
+            if (NextLevelButton != null)
+                NextLevelButton.SetActive(false);
             gameHasStarted = true;
         }
 
@@ -118,6 +131,8 @@ public class GameManager : MonoBehaviour
     IEnumerator Restart()
     {
         yield return new WaitForSeconds(2f);
+
+        ShowAd();
 
         player.transform.position = new Vector2(0, -3);
         WhiteBG.SetActive(false);
@@ -142,6 +157,18 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
 
         SecondHomeButton.SetActive(true);
+        if (NextLevelButton != null)
+            NextLevelButton.SetActive(true);
+
+        switch (Stats.lng)
+        {
+            case "rus":
+                lvlCompleteText.text = "УРОВЕНЬ ПРОЙДЕН!";
+                break;
+            default:
+                lvlCompleteText.text = "LEVEL COMPLETE!";
+                break;
+        }
 
         while (true) // Таймер для текста
         {
@@ -150,5 +177,42 @@ public class GameManager : MonoBehaviour
             lvlCompleteText.color = Color.clear;
             yield return new WaitForSecondsRealtime(.5f);
         }
+    }
+
+    void CreateAd()
+    {
+        interstitial = new InterstitialAd(gameOverAD);
+        interstitial.OnAdFailedToLoad += HandleOnAdFailedToLoad;
+        interstitial.OnAdClosed += HandleOnAdClosed;
+    }
+
+    void LoadAd()
+    {
+        AdRequest request = new AdRequest.Builder().Build();
+        //AdRequest request = new AdRequest.Builder().AddTestDevice(AdRequest.TestDeviceSimulator).AddTestDevice("3F742CFF4F3411C6").Build();
+        interstitial.LoadAd(request);
+    }
+
+    void ShowAd()
+    {
+        //Debug.Log("So close to... SHOW");
+        if (interstitial.IsLoaded() && Stats.numOfDeaths % 2 == 0 && !Stats.AdsRemoved)  // && Не куплена корона
+        {
+            //Debug.Log("SHOW");
+            interstitial.Show();
+        }
+    }
+
+    public void HandleOnAdClosed(object sender, EventArgs args)
+    {
+        //Debug.LogError("closed");
+        FindObjectOfType<GameMenuController>().OnContinueButton();
+        LoadAd();
+    }
+
+    public void HandleOnAdFailedToLoad(object sender, EventArgs args)
+    {
+        //Debug.LogError("failed");
+        LoadAd();
     }
 }

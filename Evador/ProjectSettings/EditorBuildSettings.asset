@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/train.unity
     guid: f3ebd8710b296504db4a291a4bd53f29
+  - enabled: 0
+    path: Assets/Scenes/test 2.unity
+    guid: e10fa35834dce3e44b560ff224eb010f
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: e2be3ae72c732d14dbc74c875d07fb2e
@@ -24,6 +27,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Abstract Space/Level3.unity
     guid: 33445b2ce2f30354aae67ba71559219b
   - enabled: 1
+    path: Assets/Scenes/Abstract Space/Level3.5.unity
+    guid: f8bfa0cb0abcc8448b60c77dc24b24bb
+  - enabled: 1
+    path: Assets/Scenes/Candy World/Level3.9.unity
+    guid: 10852831810ce7f46998b1bf2ea5ecc5
+  - enabled: 1
     path: Assets/Scenes/Candy World/Level4.unity
     guid: 2b3d3c60345d2134e8113cf023f4b210
   - enabled: 1
@@ -36,7 +45,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Deep Swarm/Level7.unity
     guid: bdac54ecd9add284d912360de331a43d
   - enabled: 1
-    path: Assets/Scenes/Deep Swarm/Level8.unity
+    path: Assets/Scenes/Deep Swarm/Level8.5.unity
+    guid: 44c0e68dfd7a5b54ab40cfc90a14e996
+  - enabled: 1
+    path: Assets/Scenes/Deep Swarm/Level8.6.unity
     guid: b0d7e225a5e30ee4f8bf3016b3f02c5d
   - enabled: 1
     path: Assets/Scenes/Deep Swarm/Level9.unity
@@ -47,6 +59,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/My Office/Level11.unity
     guid: 3dfd1ef4b4efb95478c238c3801b23cb
+  - enabled: 1
+    path: Assets/Scenes/My Office/Level11.5.unity
+    guid: 68403a85ebd37e94ba887628a9ab1274
   - enabled: 1
     path: Assets/Scenes/My Office/Level12.unity
     guid: 907914d4d583d664684380b7f82492ff

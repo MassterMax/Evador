@@ -40,6 +40,13 @@ public class GameMenuController : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void OnNextLevelButton()
+    {
+        Stats.currentLevel++;
+        Stats.running = true;
+        SceneManager.LoadScene(Stats.currentLevel);
+    }
+
     /// <summary>
     /// Метод для прятания всех компонент меню
     /// </summary>
@@ -65,16 +72,25 @@ public class GameMenuController : MonoBehaviour
     {
         continueButton.SetActive(false);
         homeButton.SetActive(false);
+        //nextLevel.SetActive(false);
         panel.SetActive(false);
+
+        Time.timeScale = 1f;
     }
 
     /// <summary>
-    /// В случае выхода из приложения ставим паузу автоматом
+    /// В случае выхода из приложения ставим паузу автоматически
     /// </summary>
     /// <param name="pause"> Игра на паузе?</param>
     void OnApplicationPause(bool pause)
     {
         if (pause)
            OnPauseButton();
+    }
+
+    private void OnApplicationFocus(bool focus)
+    {
+        if (!focus)
+            OnPauseButton();
     }
 }

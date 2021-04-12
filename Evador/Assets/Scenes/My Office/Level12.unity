@@ -361,7 +361,7 @@ PrefabInstance:
     - target: {fileID: 4084586910811125488, guid: 63f0e763a08c0fd49912194386a65471,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4084586912160264788, guid: 63f0e763a08c0fd49912194386a65471,
         type: 3}
@@ -431,17 +431,27 @@ PrefabInstance:
     - target: {fileID: 4084586912685037010, guid: 63f0e763a08c0fd49912194386a65471,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4084586912719525169, guid: 63f0e763a08c0fd49912194386a65471,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4084586912808872619, guid: 63f0e763a08c0fd49912194386a65471,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 2
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4084586912906730923, guid: 63f0e763a08c0fd49912194386a65471,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6603281083239598513, guid: 63f0e763a08c0fd49912194386a65471,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f0e763a08c0fd49912194386a65471, type: 3}
@@ -1044,7 +1054,7 @@ PrefabInstance:
     - target: {fileID: 7349636536648067376, guid: 1da10fa63abfb4748bc565753707e7bf,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.53
+      value: 2.223
       objectReference: {fileID: 0}
     - target: {fileID: 7349636536648067376, guid: 1da10fa63abfb4748bc565753707e7bf,
         type: 3}
@@ -12823,6 +12833,7 @@ MonoBehaviour:
   SecondHomeButton: {fileID: 1457955221}
   finishSR: {fileID: 499681508}
   playBUTTON: {fileID: 0}
+  NextLevelButton: {fileID: 0}
   shardNumber: 0
   shardCollected: 0
   deadY: 0
@@ -14438,7 +14449,7 @@ PrefabInstance:
     - target: {fileID: 626198350504707181, guid: d689faacf4492d542971ede7de2dafb6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 113
+      value: 115.03
       objectReference: {fileID: 0}
     - target: {fileID: 626198350504707181, guid: d689faacf4492d542971ede7de2dafb6,
         type: 3}

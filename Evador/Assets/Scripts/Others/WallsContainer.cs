@@ -7,7 +7,6 @@ using UnityEngine;
 public class WallsContainer : MonoBehaviour
 {
     [SerializeField] List<Wall> walls;
-
     /// <summary>
     /// Вызываем настройки по умолчанию у всех детей из списка
     /// </summary>
@@ -20,7 +19,6 @@ public class WallsContainer : MonoBehaviour
                 w.moving = false;
             }
     }
-
     /// <summary>
     /// Запускаем стены
     /// </summary>
@@ -31,3 +29,4 @@ public class WallsContainer : MonoBehaviour
                 w.Restart();
     }
 }
+
